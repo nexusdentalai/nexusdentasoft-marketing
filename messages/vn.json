@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "features": "Tính năng",
+    "blog": "Blog",
+    "cta": "Bắt đầu miễn phí",
+    "login": "Đăng nhập"
+  },
+  "hero": {
+    "h1": "Phần Mềm Quản Lý Nha Khoa Miễn Phí cho Đông Nam Á",
+    "subtitle": "Quản lý lịch hẹn, hồ sơ bệnh nhân, kế hoạch điều trị và thanh toán. Không cần thẻ tín dụng.",
+    "cta": "Bắt đầu miễn phí →",
+    "ctaSecondary": "Xem tính năng ↓"
+  },
+  "stats": {
+    "free": "100% Miễn phí",
+    "multilang": "Đa ngôn ngữ",
+    "fdi": "Biểu đồ FDI",
+    "promptpay": "Hỗ trợ PromptPay"
+  },
+  "features": {
+    "title": "Mọi thứ phòng khám của bạn cần",
+    "subtitle": "Xây dựng cho phòng khám nha khoa Đông Nam Á từ ngày đầu.",
+    "scheduling": "Lên lịch thông minh",
+    "schedulingDesc": "Quản lý lịch hẹn nhiều ghế với màu sắc phân biệt bác sĩ",
+    "records": "Hồ sơ bệnh nhân",
+    "recordsDesc": "Hồ sơ lâm sàng đầy đủ với biểu đồ nha khoa FDI",
+    "plans": "Kế hoạch điều trị",
+    "plansDesc": "Đa chuyên khoa: cấy ghép, chỉnh nha, nha khoa tổng quát",
+    "payments": "Thanh toán",
+    "paymentsDesc": "QR PromptPay, hóa đơn và biên lai",
+    "roles": "Đa vai trò",
+    "rolesDesc": "Thư ký, Bác sĩ, Quản trị — mỗi người có giao diện riêng",
+    "multilingual": "Đa ngôn ngữ",
+    "multilingualDesc": "Tiếng Anh, Thái, Việt, Pháp — dành cho phòng khám Đông Nam Á"
+  },
+  "whyFree": {
+    "title": "Tại sao miễn phí?",
+    "growing": "Chúng tôi đang phát triển",
+    "growingDesc": "Chúng tôi đang xây dựng PMS nha khoa tốt nhất cho Đông Nam Á.",
+    "noFees": "Không có phí ẩn",
+    "noFeesDesc": "Truy cập đầy đủ tất cả tính năng. Không cần thẻ tín dụng.",
+    "builtForSea": "Xây dựng cho Đông Nam Á",
+    "builtForSeaDesc": "Thiết kế cho phòng khám Thái Lan và Việt Nam từ ngày đầu."
+  },
+  "cta": {
+    "title": "Sẵn sàng hiện đại hóa phòng khám của bạn?",
+    "subtitle": "Tham gia cùng các phòng khám trên khắp Đông Nam Á đang sử dụng NexusDentaSoft",
+    "button": "Bắt đầu miễn phí hôm nay →"
+  },
+  "footer": {
+    "tagline": "PMS Nha Khoa Miễn Phí cho Đông Nam Á",
+    "features": "Tính năng",
+    "blog": "Blog",
+    "contact": "Liên hệ",
+    "copyright": "© 2025 NexusDentaSoft bởi KitView Asia"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Bài viết dành cho phòng khám nha khoa Đông Nam Á",
+    "readMore": "Đọc thêm →"
+  }
+}

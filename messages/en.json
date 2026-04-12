@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "features": "Features",
+    "blog": "Blog",
+    "cta": "Start Free",
+    "login": "Login"
+  },
+  "hero": {
+    "h1": "The Free Dental PMS for Southeast Asia",
+    "subtitle": "Manage appointments, patient records, treatment plans and payments. No credit card. No catch.",
+    "cta": "Get Started Free →",
+    "ctaSecondary": "See features ↓"
+  },
+  "stats": {
+    "free": "100% Free",
+    "multilang": "Multi-language",
+    "fdi": "FDI Dental Chart",
+    "promptpay": "PromptPay Ready"
+  },
+  "features": {
+    "title": "Everything your clinic needs",
+    "subtitle": "Built for Southeast Asian dental clinics from day one.",
+    "scheduling": "Smart Scheduling",
+    "schedulingDesc": "Multi-chair appointment management with color-coded practitioners. Never double-book a chair.",
+    "records": "Patient Records",
+    "recordsDesc": "Complete clinical dossiers with FDI dental chart, anamnesis, and treatment history.",
+    "plans": "Treatment Plans",
+    "plansDesc": "Multi-specialty support: implantology, orthodontics, periodontology, general dentistry.",
+    "payments": "Payments",
+    "paymentsDesc": "PromptPay QR, receipts and invoicing. Multi-currency support for SEA clinics.",
+    "roles": "Multi-Role Access",
+    "rolesDesc": "Secretary, Practitioner, Admin — each with their own tailored interface.",
+    "multilingual": "Multilingual",
+    "multilingualDesc": "EN, Thai, Vietnamese, French — built for SEA clinics with international patients."
+  },
+  "whyFree": {
+    "title": "Why is it free?",
+    "growing": "We're growing",
+    "growingDesc": "We're building the best dental PMS for SEA. Your feedback makes it better.",
+    "noFees": "No hidden fees",
+    "noFeesDesc": "Full access to all features. No credit card required to start.",
+    "builtForSea": "Built for SEA",
+    "builtForSeaDesc": "Designed for Thai and Vietnamese clinic workflows from day one."
+  },
+  "cta": {
+    "title": "Ready to modernize your clinic?",
+    "subtitle": "Join clinics across Southeast Asia already using NexusDentaSoft.",
+    "button": "Start for Free Today →"
+  },
+  "footer": {
+    "tagline": "The Free Dental PMS for Southeast Asia",
+    "features": "Features",
+    "blog": "Blog",
+    "contact": "Contact",
+    "copyright": "© 2025 NexusDentaSoft by KitView Asia"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Insights for dental clinics in Southeast Asia",
+    "readMore": "Read more →"
+  }
+}
