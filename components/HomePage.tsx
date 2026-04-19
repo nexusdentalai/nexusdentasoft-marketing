@@ -2,8 +2,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Calendar, FileText, ClipboardList, CreditCard, Users, Globe } from 'lucide-react'
 import HeroRedesign from './HeroRedesign'
+import RequestAccessModal from './RequestAccessModal'
 
-type T = Record<string, Record<string, string>>
+type T = Record<string, any>
 
 const FEATURES = [
   { icon: Calendar, k: 'scheduling', emoji: '📅' },
@@ -37,6 +38,8 @@ function useReveal() {
 
 export default function HomePage({ t, locale }: { t: T; locale: string }) {
   const registerUrl = `https://app.nexusdentasoft.com/register`
+  const [reqOpen, setReqOpen] = useState(false)
+  const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
   const r1 = useReveal(), r2 = useReveal(), r3 = useReveal(), r4 = useReveal(), r5 = useReveal()
 
   return (
@@ -129,13 +132,27 @@ export default function HomePage({ t, locale }: { t: T; locale: string }) {
         <div className={`max-w-3xl mx-auto text-center relative z-10 ${r4.cls}`}>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-5 tracking-tight"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-            {t.cta.title}
+            {signupsOpen ? t.cta.title : t.privateBeta.ctaBottomTitle}
           </h2>
-          <p className="text-base text-white/40 mb-10">{t.cta.subtitle}</p>
-          <a href={registerUrl}
-            className="group relative inline-block px-10 py-4 bg-gradient-to-r from-[#2e7df7] to-[#1a6ee8] text-white font-bold rounded-2xl shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/40 hover:scale-[1.03] transition-all duration-300">
-            <span className="relative z-10">{t.cta.button}</span>
-          </a>
+          <p className="text-base text-white/40 mb-10">
+            {signupsOpen ? t.cta.subtitle : t.privateBeta.ctaBottomSubtitle}
+          </p>
+          {signupsOpen ? (
+            <a href={registerUrl}
+              className="group relative inline-block px-10 py-4 bg-gradient-to-r from-[#2e7df7] to-[#1a6ee8] text-white font-bold rounded-2xl shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/40 hover:scale-[1.03] transition-all duration-300">
+              <span className="relative z-10">{t.cta.button}</span>
+            </a>
+          ) : (
+            <button type="button" onClick={() => setReqOpen(true)}
+              className="group relative inline-block px-10 py-4 bg-gradient-to-r from-[#2e7df7] to-[#1a6ee8] text-white font-bold rounded-2xl shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/40 hover:scale-[1.03] transition-all duration-300">
+              <span className="relative z-10">{t.privateBeta.ctaBottomButton}</span>
+            </button>
+          )}
+          {!signupsOpen && (
+            <p className="text-xs text-white/30 mt-8 max-w-lg mx-auto leading-relaxed">
+              {t.privateBeta.bottomLimitedAccess}
+            </p>
+          )}
         </div>
       </section>
 
@@ -157,6 +174,8 @@ export default function HomePage({ t, locale }: { t: T; locale: string }) {
           </div>
         </div>
       </footer>
+
+      <RequestAccessModal isOpen={reqOpen} onClose={() => setReqOpen(false)} t={t} locale={locale} />
 
       {/* Structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({

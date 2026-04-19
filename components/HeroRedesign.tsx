@@ -1,6 +1,8 @@
 'use client'
+import { useState } from 'react'
+import RequestAccessModal from './RequestAccessModal'
 
-type T = Record<string, Record<string, string>>
+type T = Record<string, any>
 
 const STAT_ITEMS = [
   { k: 'free', icon: '🆓' },
@@ -18,6 +20,8 @@ const CALENDAR_EVENTS = [
 
 export default function HeroRedesign({ t, locale }: { t: T; locale: string }) {
   const registerUrl = `https://app.nexusdentasoft.com/register`
+  const [reqOpen, setReqOpen] = useState(false)
+  const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
 
   return (
     <section className="bg-[#F5F6F8] pt-20 pb-16 sm:pt-24 sm:pb-20 px-4 overflow-hidden">
@@ -27,12 +31,26 @@ export default function HeroRedesign({ t, locale }: { t: T; locale: string }) {
           {/* ── LEFT: Text ────────────────────────── */}
           <div style={{ animation: 'heroFadeIn 0.7s ease-out both' }}>
             {/* Eyebrow */}
-            <div className="flex items-center gap-3 mb-6" style={{ animation: 'heroFadeIn 0.6s ease-out 0.05s both' }}>
-              <div className="w-5 h-[1px] bg-[#2563EB]" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#2563EB]">
-                Free Forever · AI-Powered
-              </span>
-            </div>
+            {signupsOpen ? (
+              <div className="flex items-center gap-3 mb-6" style={{ animation: 'heroFadeIn 0.6s ease-out 0.05s both' }}>
+                <div className="w-5 h-[1px] bg-[#2563EB]" />
+                <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#2563EB]">
+                  Free Forever · AI-Powered
+                </span>
+              </div>
+            ) : (
+              <div className="mb-6" style={{ animation: 'heroFadeIn 0.6s ease-out 0.05s both' }}>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-5 h-[1px] bg-[#2563EB]" />
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#2563EB]">
+                    🔒 {t.privateBeta.badge}
+                  </span>
+                </div>
+                <p className="text-[10px] text-[#7A8699]/70 tracking-wider pl-8 uppercase font-medium">
+                  {t.privateBeta.eyebrowFallback}
+                </p>
+              </div>
+            )}
 
             {/* Headline */}
             <h1 className="text-[32px] sm:text-[40px] lg:text-[46px] leading-[1.15] mb-6 text-[#1A2740]"
@@ -43,15 +61,22 @@ export default function HeroRedesign({ t, locale }: { t: T; locale: string }) {
             {/* Subtitle */}
             <p className="text-[15px] sm:text-base text-[#7A8699] leading-relaxed mb-8 max-w-lg"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 300, animation: 'heroFadeIn 0.7s ease-out 0.15s both' }}>
-              {t.hero.subtitle}
+              {signupsOpen ? t.hero.subtitle : t.privateBeta.heroSubtitle}
             </p>
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-3 mb-10" style={{ animation: 'heroFadeIn 0.7s ease-out 0.2s both' }}>
-              <a href={registerUrl}
-                className="px-7 py-3 bg-[#2563EB] text-white text-sm font-medium rounded-[10px] hover:bg-[#1B3A6B] transition-colors duration-200 shadow-sm">
-                {t.hero.cta}
-              </a>
+              {signupsOpen ? (
+                <a href={registerUrl}
+                  className="px-7 py-3 bg-[#2563EB] text-white text-sm font-medium rounded-[10px] hover:bg-[#1B3A6B] transition-colors duration-200 shadow-sm">
+                  {t.hero.cta}
+                </a>
+              ) : (
+                <button type="button" onClick={() => setReqOpen(true)}
+                  className="px-7 py-3 bg-[#2563EB] text-white text-sm font-medium rounded-[10px] hover:bg-[#1B3A6B] transition-colors duration-200 shadow-sm">
+                  {t.privateBeta.ctaPrimary}
+                </button>
+              )}
               <a href="#features"
                 className="px-7 py-3 text-[#7A8699] text-sm font-medium rounded-[10px] border border-[#C8D0DC] hover:border-[#2563EB] hover:text-[#2563EB] transition-all duration-200 bg-transparent">
                 {t.hero.ctaSecondary}
@@ -169,6 +194,7 @@ export default function HeroRedesign({ t, locale }: { t: T; locale: string }) {
           50% { transform: translateY(-5px); }
         }
       `}</style>
+      <RequestAccessModal isOpen={reqOpen} onClose={() => setReqOpen(false)} t={t} locale={locale} />
     </section>
   )
 }
