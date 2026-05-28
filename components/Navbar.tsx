@@ -5,9 +5,9 @@ import RequestAccessModal from './RequestAccessModal'
 
 type T = Record<string, any>
 const LOCALES = [
-  { code: 'en', label: 'EN', flag: '🇬🇧' },
-  { code: 'th', label: 'ไทย', flag: '🇹🇭' },
-  { code: 'vn', label: 'Tiếng Việt', flag: '🇻🇳' },
+  { code: 'en' },
+  { code: 'th' },
+  { code: 'vn' },
 ]
 
 export default function Navbar({ t, locale }: { t: T; locale: string }) {
@@ -38,7 +38,7 @@ export default function Navbar({ t, locale }: { t: T; locale: string }) {
             {LOCALES.map(l => (
               <Link key={l.code} href={`/${l.code}`}
                 className={`px-2.5 py-1 text-xs font-medium transition-colors ${locale === l.code ? 'bg-[#2e7df7] text-white' : 'text-gray-500 hover:bg-gray-50'}`}>
-                {l.flag} {l.label}
+                {l.code.toUpperCase()}
               </Link>
             ))}
           </div>
@@ -62,7 +62,7 @@ export default function Navbar({ t, locale }: { t: T; locale: string }) {
           <div className="flex gap-2">
             {LOCALES.map(l => (
               <Link key={l.code} href={`/${l.code}`} onClick={() => setMenu(false)}
-                className={`px-2.5 py-1 rounded text-xs ${locale === l.code ? 'bg-[#2e7df7] text-white' : 'text-gray-500 bg-gray-100'}`}>{l.flag}</Link>
+                className={`px-2.5 py-1 rounded text-xs ${locale === l.code ? 'bg-[#2e7df7] text-white' : 'text-gray-500 bg-gray-100'}`}>{l.code.toUpperCase()}</Link>
             ))}
           </div>
           {signupsOpen ? (
