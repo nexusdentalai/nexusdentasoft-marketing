@@ -27,6 +27,12 @@ export default function Footer({ t, locale }: { t: T; locale: string }) {
             <p className="text-xs text-white/30">{t.footer.copyright}</p>
           </div>
         </div>
+        {/* Row legal (discrète, sous la grille — pas dans une colonne, pour préserver le 3-col responsive) */}
+        <div className="mt-8 pt-4 border-t border-white/[0.05] flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-white/40">
+          <Link href={`/${locale}/legal`} className="hover:text-white/70">{t.footer.legal}</Link>
+          <span aria-hidden="true">·</span>
+          <Link href={`/${locale}/privacy`} className="hover:text-white/70">{t.footer.privacy}</Link>
+        </div>
       </div>
     </footer>
   )

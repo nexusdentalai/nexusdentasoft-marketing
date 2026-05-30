@@ -1,15 +1,9 @@
 'use client'
 import { useState } from 'react'
 import RequestAccessModal from './RequestAccessModal'
+import { COMPANY } from '@/lib/company-info'
 
 type T = Record<string, any>
-
-// Données société RÉELLES (hardcoded — identique 3 langues, sauf labels i18n).
-const COMPANY = {
-  legalName: 'Smilesoft Systems (Thailand) Co., Ltd.',
-  address: 'Khlong Toei Nuea, Watthana, Bangkok 10110, Thailand',
-  registrationNumber: '0845567009324',
-}
 
 // Google Maps embed — point exact Sukhumvit 13 / Khwaeng Khlong Toei Nuea / Watthana.
 // URL générée depuis maps.google.com (sans clé API). Aucun tracking-cookies-Google
