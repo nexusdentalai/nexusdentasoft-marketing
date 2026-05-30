@@ -266,7 +266,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       subtitle: 'Join clinics across Southeast Asia already using NexusDentaSoft.',
       button: 'Start for Free Today →',
     },
-    footer: { tagline: 'The Free Dental PMS for Southeast Asia', features: 'Features', blog: 'Blog', contact: 'Contact', location: 'Bangkok, Thailand', email: 'contact@nexusdentasia.com', copyright: '© 2026 NexusDentaSoft · Smilesoft Systems (Thailand) Co., Ltd.', legal: 'Legal notice', privacy: 'Privacy policy' },
+    footer: { tagline: 'The Free Dental PMS for Southeast Asia', features: 'Features', pricing: 'Pricing', blog: 'Blog', contact: 'Contact', location: 'Bangkok, Thailand', email: 'contact@nexusdentasia.com', copyright: '© 2026 NexusDentaSoft · Smilesoft Systems (Thailand) Co., Ltd.', legal: 'Legal notice', privacy: 'Privacy policy', productHeading: 'Product', contactHeading: 'Get in touch' },
     blog: { title: 'Blog', subtitle: 'Insights for dental clinics in Southeast Asia', readMore: 'Read more →' },
     privateBeta: {
       badge: 'Private Beta · By Invitation',
@@ -571,7 +571,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       subtitle: 'เข้าร่วมกับคลินิกทั่วเอเชียตะวันออกเฉียงใต้ที่ใช้ NexusDentaSoft อยู่แล้ว',
       button: 'เริ่มใช้งานฟรีวันนี้ →',
     },
-    footer: { tagline: 'PMS ทันตกรรมฟรีสำหรับเอเชียตะวันออกเฉียงใต้', features: 'ฟีเจอร์', blog: 'บล็อก', contact: 'ติดต่อ', location: 'กรุงเทพฯ ประเทศไทย', email: 'contact@nexusdentasia.com', copyright: '© 2026 NexusDentaSoft · Smilesoft Systems (Thailand) Co., Ltd.', legal: 'ข้อกำหนดทางกฎหมาย', privacy: 'นโยบายความเป็นส่วนตัว' },
+    footer: { tagline: 'PMS ทันตกรรมฟรีสำหรับเอเชียตะวันออกเฉียงใต้', features: 'ฟีเจอร์', pricing: 'ราคา', blog: 'บล็อก', contact: 'ติดต่อ', location: 'กรุงเทพฯ ประเทศไทย', email: 'contact@nexusdentasia.com', copyright: '© 2026 NexusDentaSoft · Smilesoft Systems (Thailand) Co., Ltd.', legal: 'ข้อกำหนดทางกฎหมาย', privacy: 'นโยบายความเป็นส่วนตัว', productHeading: 'ผลิตภัณฑ์', contactHeading: 'ติดต่อเรา' },
     blog: { title: 'บล็อก', subtitle: 'บทความสำหรับคลินิกทันตกรรมในเอเชียตะวันออกเฉียงใต้', readMore: 'อ่านเพิ่มเติม →' },
     privateBeta: {
       badge: 'รุ่นทดลองส่วนตัว · เฉพาะผู้ได้รับเชิญ',
@@ -876,7 +876,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       subtitle: 'Tham gia cùng các phòng khám trên khắp Đông Nam Á đang sử dụng NexusDentaSoft',
       button: 'Bắt đầu miễn phí hôm nay →',
     },
-    footer: { tagline: 'PMS Nha Khoa Miễn Phí cho Đông Nam Á', features: 'Tính năng', blog: 'Blog', contact: 'Liên hệ', location: 'Bangkok, Thái Lan', email: 'contact@nexusdentasia.com', copyright: '© 2026 NexusDentaSoft · Smilesoft Systems (Thailand) Co., Ltd.', legal: 'Pháp lý', privacy: 'Chính sách bảo mật' },
+    footer: { tagline: 'PMS Nha Khoa Miễn Phí cho Đông Nam Á', features: 'Tính năng', pricing: 'Bảng giá', blog: 'Blog', contact: 'Liên hệ', location: 'Bangkok, Thái Lan', email: 'contact@nexusdentasia.com', copyright: '© 2026 NexusDentaSoft · Smilesoft Systems (Thailand) Co., Ltd.', legal: 'Pháp lý', privacy: 'Chính sách bảo mật', productHeading: 'Sản phẩm', contactHeading: 'Liên hệ với chúng tôi' },
     blog: { title: 'Blog', subtitle: 'Bài viết dành cho phòng khám nha khoa Đông Nam Á', readMore: 'Đọc thêm →' },
     privateBeta: {
       badge: 'Beta Riêng · Theo Lời Mời',
