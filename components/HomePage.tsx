@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import HeroRedesign from './HeroRedesign'
 import RequestAccessModal from './RequestAccessModal'
+import Footer from './Footer'
 import type { Currency } from '@/lib/pricing-config'
 
 type T = Record<string, any>
@@ -30,7 +31,7 @@ export default function HomePage({ t, locale, currency }: { t: T; locale: string
   const registerUrl = `https://app.nexusdentasoft.com/register`
   const [reqOpen, setReqOpen] = useState(false)
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
-  const r1 = useReveal(), r2 = useReveal(), r3 = useReveal(), r4 = useReveal(), r5 = useReveal()
+  const r1 = useReveal(), r2 = useReveal(), r3 = useReveal(), r4 = useReveal()
 
   return (
     <>
@@ -140,54 +141,37 @@ export default function HomePage({ t, locale, currency }: { t: T; locale: string
         </div>
       </section>
 
-      {/* ── CTA bottom — Lot H3 (à refondre, navy temporaire) ─ */}
-      <section className="py-28 px-4 bg-[#0f2744] relative overflow-hidden" ref={r4.ref}>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2e7df7]/5 to-transparent pointer-events-none" />
-        <div className={`max-w-3xl mx-auto text-center relative z-10 ${r4.cls}`}>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-5 tracking-tight"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+      {/* ── CTA bottom (espresso warm + bouton gold, cohérent Hero/B paradigm) ─ */}
+      <section className="py-28 px-4 bg-espresso text-w-0" ref={r4.ref}>
+        <div className={`max-w-3xl mx-auto text-center ${r4.cls}`}>
+          <h2 className="text-3xl sm:text-4xl mb-5 leading-tight"
+            style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 300 }}>
             {signupsOpen ? t.cta.title : t.privateBeta.ctaBottomTitle}
           </h2>
-          <p className="text-base text-white/40 mb-10">
+          <p className="text-base text-w-300 mb-10">
             {signupsOpen ? t.cta.subtitle : t.privateBeta.ctaBottomSubtitle}
           </p>
           {signupsOpen ? (
             <a href={registerUrl}
-              className="group relative inline-block px-10 py-4 bg-gradient-to-r from-[#2e7df7] to-[#1a6ee8] text-white font-bold rounded-2xl shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/40 hover:scale-[1.03] transition-all duration-300">
-              <span className="relative z-10">{t.cta.button}</span>
+              className="inline-block px-10 py-4 bg-gold text-w-0 font-semibold rounded-[10px] hover:bg-gold-dark transition-colors shadow-sm">
+              {t.cta.button}
             </a>
           ) : (
             <button type="button" onClick={() => setReqOpen(true)}
-              className="group relative inline-block px-10 py-4 bg-gradient-to-r from-[#2e7df7] to-[#1a6ee8] text-white font-bold rounded-2xl shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/40 hover:scale-[1.03] transition-all duration-300">
-              <span className="relative z-10">{t.privateBeta.ctaBottomButton}</span>
+              className="inline-block px-10 py-4 bg-gold text-w-0 font-semibold rounded-[10px] hover:bg-gold-dark transition-colors shadow-sm">
+              {t.privateBeta.ctaBottomButton}
             </button>
           )}
           {!signupsOpen && (
-            <p className="text-xs text-white/30 mt-8 max-w-lg mx-auto leading-relaxed">
+            <p className="text-xs text-w-500 mt-8 max-w-lg mx-auto leading-relaxed">
               {t.privateBeta.bottomLimitedAccess}
             </p>
           )}
         </div>
       </section>
 
-      {/* ── FOOTER inline — Lot H3 (à consolider vers Footer.tsx, navy temporaire) ─ */}
-      <footer className="py-12 px-4 bg-[#060e1a] border-t border-white/[0.04]" ref={r5.ref}>
-        <div className={`max-w-5xl mx-auto ${r5.cls}`}>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="flex items-center text-sm">
-              <span style={{ fontWeight: 300, color: 'rgba(255,255,255,0.4)' }}>Nexus</span>
-              {' '}
-              <span style={{ fontWeight: 700, color: 'rgba(255,255,255,0.7)' }}>Denta</span>
-              <span style={{ fontWeight: 700, color: '#2e7df7' }}>Soft</span>
-            </div>
-            <div className="flex items-center gap-6 text-xs text-white/25">
-              <span>&copy; 2026 NexusDentaSoft</span>
-              <span>Bangkok, Thailand 🇹🇭</span>
-              <a href="mailto:hello@nexusdentasoft.com" className="hover:text-white/50 transition-colors">hello@nexusdentasoft.com</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      {/* ── FOOTER (composant consolidé H3 : espresso warm + gold + location + email) ─ */}
+      <Footer t={t} locale={locale} />
 
       <RequestAccessModal isOpen={reqOpen} onClose={() => setReqOpen(false)} t={t} locale={locale} />
 

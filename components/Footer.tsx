@@ -15,11 +15,12 @@ export default function Footer({ t, locale }: { t: T; locale: string }) {
               <span style={{ fontWeight: 700, color: '#b8852f' }}>Soft</span>
             </div>
             <p className="text-sm text-white/40">{t.footer.tagline}</p>
+            <p className="text-xs text-white/30 mt-1">{t.footer.location}</p>
           </div>
           <div className="space-y-2">
             <a href="#features" className="block text-sm text-white/50 hover:text-white/80">{t.footer.features}</a>
             <Link href={`/${locale}/blog`} className="block text-sm text-white/50 hover:text-white/80">{t.footer.blog}</Link>
-            <a href="mailto:hello@nexusdentasoft.com" className="block text-sm text-white/50 hover:text-white/80">{t.footer.contact}</a>
+            <a href={`mailto:${t.footer.email}`} className="block text-sm text-white/50 hover:text-white/80">{t.footer.email}</a>
           </div>
           <div className="flex items-end">
             <p className="text-xs text-white/30">{t.footer.copyright}</p>
