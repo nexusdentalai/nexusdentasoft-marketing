@@ -4,7 +4,7 @@ type T = Record<string, Record<string, string>>
 
 export default function Footer({ t, locale }: { t: T; locale: string }) {
   return (
-    <footer className="bg-[#0f2744] py-12 px-4">
+    <footer className="bg-[#1c1b1a] py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
@@ -12,7 +12,7 @@ export default function Footer({ t, locale }: { t: T; locale: string }) {
               <span style={{ fontWeight: 300, color: 'rgba(255,255,255,0.4)' }}>Nexus</span>
               {' '}
               <span style={{ fontWeight: 700, color: 'rgba(255,255,255,0.7)' }}>Denta</span>
-              <span style={{ fontWeight: 700, color: '#2e7df7' }}>Soft</span>
+              <span style={{ fontWeight: 700, color: '#b8852f' }}>Soft</span>
             </div>
             <p className="text-sm text-white/40">{t.footer.tagline}</p>
           </div>
