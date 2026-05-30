@@ -33,7 +33,7 @@ export default function Page({ params }: { params: { locale: string } }) {
   return (
     <>
       <Navbar t={t} locale={params.locale} />
-      <main><HomePage t={t} locale={params.locale} /></main>
+      <main><HomePage t={t} locale={params.locale} currency={currency} /></main>
     </>
   )
 }

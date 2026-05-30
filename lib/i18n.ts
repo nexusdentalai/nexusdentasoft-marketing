@@ -5,10 +5,22 @@ export const translations: Record<Locale, Record<string, any>> = {
   en: {
     nav: { features: 'Features', blog: 'Blog', login: 'Login', cta: 'Start Free' },
     hero: {
-      h1: 'The Free Dental PMS for Southeast Asia',
-      subtitle: 'Manage appointments, patient records, treatment plans and payments. No credit card. No catch.',
-      cta: 'Get Started Free →',
-      ctaSecondary: 'See features ↓',
+      // h1 = texte complet utilisé pour SEO/metadata (page.tsx). h1a + h1accent =
+      // split rendu visuel (accent gold italic). Garde la cohérence indexable.
+      h1: 'Your dental copilot, AI-powered.',
+      h1a: 'Your dental copilot,',
+      h1accent: 'AI-powered.',
+      badge: "Southeast Asia's first AI-driven dental PMS",
+      subtitle: "A PMS where AI doesn't just organize data — it assists the practitioner at every moment: creates time, recovers revenue, prevents errors. Built for Thailand and Vietnam.",
+      cta: 'Try for free →',
+      ctaSecondary: 'Discover the AI PMS',
+      reassure1: '30 days free',
+      reassure2: 'No credit card',
+      reassure3: 'In every Southeast Asian language',
+      cardPlanning: 'Scheduling',
+      cardCompta: 'Accounting',
+      cardDashboard: 'Dashboard',
+      aiPill: '✦ AI',
     },
     stats: { free: '100% Free', multilang: 'Multi-language', fdi: 'FDI Dental Chart', promptpay: 'PromptPay Ready' },
     features: {
@@ -94,10 +106,21 @@ export const translations: Record<Locale, Record<string, any>> = {
   th: {
     nav: { features: 'ฟีเจอร์', blog: 'บล็อก', login: 'เข้าสู่ระบบ', cta: 'เริ่มฟรี' },
     hero: {
-      h1: 'ระบบบริหารคลินิกทันตกรรม ฟรี สำหรับเอเชียตะวันออกเฉียงใต้',
-      subtitle: 'จัดการนัดหมาย บันทึกผู้ป่วย แผนการรักษา และการชำระเงิน ไม่ต้องใช้บัตรเครดิต',
-      cta: 'เริ่มใช้งานฟรี →',
-      ctaSecondary: 'ดูฟีเจอร์ ↓',
+      // TODO i18n-review (Joel) — traductions TH provisoires, à valider locuteur natif.
+      h1: 'ผู้ช่วยทันตกรรมของคุณ ขับเคลื่อนด้วย AI',
+      h1a: 'ผู้ช่วยทันตกรรมของคุณ',
+      h1accent: 'ขับเคลื่อนด้วย AI',
+      badge: 'PMS ทันตกรรมขับเคลื่อนด้วย AI รายแรกของเอเชียตะวันออกเฉียงใต้',
+      subtitle: 'PMS ที่ AI ไม่เพียงจัดการข้อมูล — แต่ช่วยทันตแพทย์ทุกขณะ: สร้างเวลา กู้รายได้ ป้องกันข้อผิดพลาด ออกแบบสำหรับประเทศไทยและเวียดนาม',
+      cta: 'ทดลองฟรี →',
+      ctaSecondary: 'ค้นพบ AI PMS',
+      reassure1: 'ฟรี 30 วัน',
+      reassure2: 'ไม่ต้องใช้บัตรเครดิต',
+      reassure3: 'ทุกภาษาในเอเชียตะวันออกเฉียงใต้',
+      cardPlanning: 'ตารางนัด',
+      cardCompta: 'บัญชี',
+      cardDashboard: 'แดชบอร์ด',
+      aiPill: '✦ AI',
     },
     stats: { free: 'ฟรี 100%', multilang: 'หลายภาษา', fdi: 'แผนภูมิ FDI', promptpay: 'รองรับ PromptPay' },
     features: {
@@ -183,10 +206,21 @@ export const translations: Record<Locale, Record<string, any>> = {
   vn: {
     nav: { features: 'Tính năng', blog: 'Blog', login: 'Đăng nhập', cta: 'Bắt đầu miễn phí' },
     hero: {
-      h1: 'Phần Mềm Quản Lý Nha Khoa Miễn Phí cho Đông Nam Á',
-      subtitle: 'Quản lý lịch hẹn, hồ sơ bệnh nhân, kế hoạch điều trị và thanh toán. Không cần thẻ tín dụng.',
-      cta: 'Bắt đầu miễn phí →',
-      ctaSecondary: 'Xem tính năng ↓',
+      // TODO i18n-review (Jessie) — traductions VN provisoires, à valider locuteur natif.
+      h1: 'Trợ lý nha khoa của bạn, tích hợp AI',
+      h1a: 'Trợ lý nha khoa của bạn,',
+      h1accent: 'tích hợp AI',
+      badge: 'PMS nha khoa ứng dụng AI đầu tiên tại Đông Nam Á',
+      subtitle: 'Một PMS nơi AI không chỉ sắp xếp dữ liệu — mà còn hỗ trợ bác sĩ mọi lúc: tạo thời gian, thu hồi doanh thu, ngăn ngừa sai sót. Thiết kế cho Thái Lan và Việt Nam.',
+      cta: 'Dùng thử miễn phí →',
+      ctaSecondary: 'Khám phá PMS AI',
+      reassure1: '30 ngày miễn phí',
+      reassure2: 'Không cần thẻ tín dụng',
+      reassure3: 'Mọi ngôn ngữ Đông Nam Á',
+      cardPlanning: 'Lịch hẹn',
+      cardCompta: 'Kế toán',
+      cardDashboard: 'Bảng điều khiển',
+      aiPill: '✦ AI',
     },
     stats: { free: '100% Miễn phí', multilang: 'Đa ngôn ngữ', fdi: 'Biểu đồ FDI', promptpay: 'Hỗ trợ PromptPay' },
     features: {

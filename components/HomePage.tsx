@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Calendar, FileText, ClipboardList, CreditCard, Users, Globe } from 'lucide-react'
 import HeroRedesign from './HeroRedesign'
 import RequestAccessModal from './RequestAccessModal'
+import type { Currency } from '@/lib/pricing-config'
 
 type T = Record<string, any>
 
@@ -14,8 +15,6 @@ const FEATURES = [
   { icon: Users, k: 'roles', emoji: '👥' },
   { icon: Globe, k: 'multilingual', emoji: '🌏' },
 ]
-
-const STAT_ICONS = ['🆓', '🤖', '📱', '🔐']
 
 const TESTIMONIALS = [
   { ini: 'SP', color: '#2e7df7', name: 'Dr. Somchai P.', loc: 'Bangkok, Thailand' },
@@ -36,7 +35,7 @@ function useReveal() {
   return { ref, cls: `transition-all duration-[800ms] ease-out ${v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}` }
 }
 
-export default function HomePage({ t, locale }: { t: T; locale: string }) {
+export default function HomePage({ t, locale, currency }: { t: T; locale: string; currency: Currency }) {
   const registerUrl = `https://app.nexusdentasoft.com/register`
   const [reqOpen, setReqOpen] = useState(false)
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
@@ -45,7 +44,7 @@ export default function HomePage({ t, locale }: { t: T; locale: string }) {
   return (
     <>
       {/* ── HERO (redesigned) ────────────────────── */}
-      <HeroRedesign t={t} locale={locale} />
+      <HeroRedesign t={t} currency={currency} onWaitlist={() => setReqOpen(true)} />
 
       {/* ── FEATURES ──────────────────────────────── */}
       <section id="features" className="py-24 px-4 bg-[#0b1d33]" ref={r1.ref}>
