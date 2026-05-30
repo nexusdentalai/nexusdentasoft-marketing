@@ -3,7 +3,7 @@ export type Locale = (typeof locales)[number]
 
 export const translations: Record<Locale, Record<string, any>> = {
   en: {
-    nav: { features: 'Features', blog: 'Blog', login: 'Login', cta: 'Start Free' },
+    nav: { features: 'Features', pricing: 'Pricing', blog: 'Blog', login: 'Login', cta: 'Start Free' },
     hero: {
       // h1 = texte complet utilisé pour SEO/metadata (page.tsx). h1a + h1accent =
       // split rendu visuel (accent gold italic). Garde la cohérence indexable.
@@ -55,6 +55,56 @@ export const translations: Record<Locale, Record<string, any>> = {
       card2Desc: 'After 3 months, the practitioner cannot walk into the clinic without their AI briefing. They depend on it for clinical quality.',
       card3Title: 'Premium pricing becomes obvious',
       card3Desc: "You no longer 'justify' a subscription against basic software. You compare it to three salaries.",
+    },
+    pricing: {
+      metaTitle: 'Pricing — NexusDentaSoft',
+      metaDescription: 'Simple pricing, no commitment. Try NexusDentaSoft free for 30 days. From $35/month. Currency auto-detected for Thailand and Vietnam.',
+      eyebrow: 'Pricing',
+      title: 'Simple pricing, no commitment',
+      subtitle: 'Try free for 30 days. No credit card. At the end of the trial, you choose freely — or not.',
+      currencyNote: 'Currency detected from your country',
+      perMonth: '/ month',
+      mostChosen: 'Most chosen',
+      freePrice: 'Free',
+      free: {
+        name: 'Discovery',
+        desc: 'Try NexusDentaSoft without commitment, no credit card.',
+        cta: 'Start free trial',
+        features: [
+          { text: 'Up to 100 patients' },
+          { text: 'Smart scheduling' },
+          { text: 'Patient records + FDI dental chart' },
+          { text: 'PromptPay & basic payments' },
+          { text: 'AI copilot (briefings, voice-to-report)', included: false },
+        ],
+      },
+      starter: {
+        name: 'Starter',
+        desc: 'For growing dental practices.',
+        cta: 'Start free trial',
+        features: [
+          { text: 'Unlimited patients' },
+          { text: 'Smart scheduling + reminders (LINE, Zalo, SMS)' },
+          { text: 'Full FDI dental chart + treatment plans' },
+          { text: 'Multi-payment (PromptPay, cards, VietQR)' },
+          { text: 'AI copilot — briefings & voice-to-report' },
+          { text: 'Standard email support' },
+        ],
+      },
+      premium: {
+        name: 'Premium',
+        desc: 'The complete copilot for ambitious practices.',
+        cta: 'Start free trial',
+        features: [
+          { text: 'Everything in Starter' },
+          { text: 'AI accountant — full bookkeeping & profitability' },
+          { text: 'Patient re-engagement automation' },
+          { text: 'Continuous quality & compliance audit' },
+          { text: 'Advanced statistics & AI insights' },
+          { text: 'Priority support (LINE / WhatsApp)' },
+        ],
+      },
+      footnote: 'More than 3 clinics? Branch offer on request → · No commitment · At the end of the trial, you choose freely.',
     },
     cta: {
       title: 'Ready to modernize your clinic?',
@@ -112,7 +162,7 @@ export const translations: Record<Locale, Record<string, any>> = {
     },
   },
   th: {
-    nav: { features: 'ฟีเจอร์', blog: 'บล็อก', login: 'เข้าสู่ระบบ', cta: 'เริ่มฟรี' },
+    nav: { features: 'ฟีเจอร์', pricing: 'ราคา', blog: 'บล็อก', login: 'เข้าสู่ระบบ', cta: 'เริ่มฟรี' },
     hero: {
       // TODO i18n-review (Joel) — traductions TH provisoires, à valider locuteur natif.
       h1: 'ผู้ช่วยทันตกรรมของคุณ ขับเคลื่อนด้วย AI',
@@ -163,6 +213,57 @@ export const translations: Record<Locale, Record<string, any>> = {
       card2Desc: 'หลัง 3 เดือน ทันตแพทย์ไม่สามารถมาคลินิกได้โดยปราศจาก briefing AI ของเขา เขาพึ่งพิงเพื่อคุณภาพคลินิก',
       card3Title: 'ราคาพรีเมียมกลายเป็นสิ่งที่ชัดเจน',
       card3Desc: "คุณไม่ต้อง 'อธิบาย' การสมัครสมาชิกเทียบกับซอฟต์แวร์พื้นฐานอีกต่อไป คุณเปรียบเทียบกับสามเงินเดือน",
+    },
+    // TODO i18n-review (Joel) — traductions TH pricing provisoires
+    pricing: {
+      metaTitle: 'ราคา — NexusDentaSoft',
+      metaDescription: 'ราคาเรียบง่าย ไม่ผูกมัด ทดลอง NexusDentaSoft ฟรี 30 วัน เริ่มต้น 1,290 ฿/เดือน',
+      eyebrow: 'ราคา',
+      title: 'ราคาเรียบง่าย ไม่ผูกมัด',
+      subtitle: 'ทดลองฟรี 30 วัน ไม่ต้องใช้บัตรเครดิต เมื่อสิ้นสุดทดลอง คุณเลือกได้อย่างอิสระ',
+      currencyNote: 'ตรวจจับสกุลเงินตามประเทศของคุณ',
+      perMonth: '/ เดือน',
+      mostChosen: 'ที่ได้รับเลือกมากที่สุด',
+      freePrice: 'ฟรี',
+      free: {
+        name: 'สำรวจ',
+        desc: 'ทดลอง NexusDentaSoft โดยไม่ผูกมัด ไม่ต้องใช้บัตรเครดิต',
+        cta: 'เริ่มทดลองฟรี',
+        features: [
+          { text: 'ผู้ป่วยสูงสุด 100 คน' },
+          { text: 'จัดตารางนัดอัจฉริยะ' },
+          { text: 'บันทึกผู้ป่วย + ผัง FDI' },
+          { text: 'PromptPay และการชำระเงินพื้นฐาน' },
+          { text: 'AI copilot (briefing, เขียนรายงานจากเสียง)', included: false },
+        ],
+      },
+      starter: {
+        name: 'Starter',
+        desc: 'สำหรับคลินิกทันตกรรมที่กำลังเติบโต',
+        cta: 'เริ่มทดลองฟรี',
+        features: [
+          { text: 'ผู้ป่วยไม่จำกัด' },
+          { text: 'จัดตารางนัด + เตือนความจำ (LINE, Zalo, SMS)' },
+          { text: 'ผัง FDI ครบครัน + แผนการรักษา' },
+          { text: 'หลายช่องทางชำระ (PromptPay, บัตร, VietQR)' },
+          { text: 'AI copilot — briefing และเขียนรายงานจากเสียง' },
+          { text: 'การสนับสนุนทางอีเมลมาตรฐาน' },
+        ],
+      },
+      premium: {
+        name: 'Premium',
+        desc: 'ผู้ช่วยครบครันสำหรับคลินิกที่ทะเยอทะยาน',
+        cta: 'เริ่มทดลองฟรี',
+        features: [
+          { text: 'ทุกอย่างใน Starter' },
+          { text: 'นักบัญชี AI — บัญชีและกำไรครบวงจร' },
+          { text: 'อัตโนมัติติดต่อผู้ป่วยกลับ' },
+          { text: 'ตรวจสอบคุณภาพและการปฏิบัติตามอย่างต่อเนื่อง' },
+          { text: 'สถิติขั้นสูง + AI insights' },
+          { text: 'สนับสนุนแบบลำดับความสำคัญ (LINE / WhatsApp)' },
+        ],
+      },
+      footnote: 'มากกว่า 3 คลินิก? ข้อเสนอ Branch ตามใบเสนอราคา → · ไม่ผูกมัด · เมื่อสิ้นสุดทดลอง คุณเลือกได้อย่างอิสระ',
     },
     cta: {
       title: 'พร้อมที่จะปรับปรุงคลินิกของคุณหรือยัง?',
@@ -220,7 +321,7 @@ export const translations: Record<Locale, Record<string, any>> = {
     },
   },
   vn: {
-    nav: { features: 'Tính năng', blog: 'Blog', login: 'Đăng nhập', cta: 'Bắt đầu miễn phí' },
+    nav: { features: 'Tính năng', pricing: 'Bảng giá', blog: 'Blog', login: 'Đăng nhập', cta: 'Bắt đầu miễn phí' },
     hero: {
       // TODO i18n-review (Jessie) — traductions VN provisoires, à valider locuteur natif.
       h1: 'Trợ lý nha khoa của bạn, tích hợp AI',
@@ -271,6 +372,57 @@ export const translations: Record<Locale, Record<string, any>> = {
       card2Desc: 'Sau 3 tháng, bác sĩ không thể bước vào phòng khám mà không có bản tóm tắt AI. Họ phụ thuộc vào nó cho chất lượng lâm sàng.',
       card3Title: 'Giá cao cấp trở nên hiển nhiên',
       card3Desc: "Bạn không còn 'biện hộ' việc đăng ký so với phần mềm cơ bản. Bạn so sánh nó với ba mức lương.",
+    },
+    // TODO i18n-review (Jessie) — traductions VN pricing provisoires
+    pricing: {
+      metaTitle: 'Bảng giá — NexusDentaSoft',
+      metaDescription: 'Giá đơn giản, không cam kết. Dùng thử NexusDentaSoft miễn phí 30 ngày. Từ 900.000₫/tháng.',
+      eyebrow: 'Bảng giá',
+      title: 'Giá đơn giản, không cam kết',
+      subtitle: 'Dùng thử miễn phí 30 ngày. Không cần thẻ tín dụng. Kết thúc thời gian thử, bạn chọn tự do.',
+      currencyNote: 'Tiền tệ được phát hiện theo quốc gia của bạn',
+      perMonth: '/ tháng',
+      mostChosen: 'Được chọn nhiều nhất',
+      freePrice: 'Miễn phí',
+      free: {
+        name: 'Khám phá',
+        desc: 'Dùng thử NexusDentaSoft không cam kết, không cần thẻ tín dụng.',
+        cta: 'Bắt đầu dùng thử',
+        features: [
+          { text: 'Tối đa 100 bệnh nhân' },
+          { text: 'Lên lịch thông minh' },
+          { text: 'Hồ sơ bệnh nhân + biểu đồ FDI' },
+          { text: 'PromptPay & thanh toán cơ bản' },
+          { text: 'AI copilot (tóm tắt, ghi báo cáo bằng giọng nói)', included: false },
+        ],
+      },
+      starter: {
+        name: 'Starter',
+        desc: 'Dành cho phòng khám nha khoa đang phát triển.',
+        cta: 'Bắt đầu dùng thử',
+        features: [
+          { text: 'Bệnh nhân không giới hạn' },
+          { text: 'Lên lịch thông minh + nhắc nhở (LINE, Zalo, SMS)' },
+          { text: 'Biểu đồ FDI đầy đủ + kế hoạch điều trị' },
+          { text: 'Đa thanh toán (PromptPay, thẻ, VietQR)' },
+          { text: 'AI copilot — tóm tắt & ghi báo cáo bằng giọng nói' },
+          { text: 'Hỗ trợ email tiêu chuẩn' },
+        ],
+      },
+      premium: {
+        name: 'Premium',
+        desc: 'Trợ lý hoàn chỉnh cho các phòng khám tham vọng.',
+        cta: 'Bắt đầu dùng thử',
+        features: [
+          { text: 'Mọi thứ có trong Starter' },
+          { text: 'Kế toán AI — sổ sách & lợi nhuận đầy đủ' },
+          { text: 'Tự động kết nối lại bệnh nhân' },
+          { text: 'Kiểm tra chất lượng & tuân thủ liên tục' },
+          { text: 'Thống kê nâng cao + AI insights' },
+          { text: 'Hỗ trợ ưu tiên (LINE / WhatsApp)' },
+        ],
+      },
+      footnote: 'Hơn 3 phòng khám? Ưu đãi Branch theo báo giá → · Không cam kết · Kết thúc thời gian thử, bạn chọn tự do.',
     },
     cta: {
       title: 'Sẵn sàng hiện đại hóa phòng khám của bạn?',

@@ -25,6 +25,14 @@ export function resolveCurrency(country: string | null | undefined): Currency {
   return COUNTRY_TO_CURRENCY[country.toUpperCase()] ?? 'USD'
 }
 
+// Helper DRY pour Server Components : encapsule la détection pays (Next 14.2
+// `headers()` sync) + l'override DEV `NX_FAKE_COUNTRY`. Utilisé par toutes les
+// pages qui ont besoin de la devise (home, pricing, etc.).
+export function resolveCurrencyFromHeaders(h: Headers): Currency {
+  const raw = process.env.NX_FAKE_COUNTRY ?? h.get('x-vercel-ip-country') ?? null
+  return resolveCurrency(raw)
+}
+
 // Format d'affichage par devise. `position` = avant/après le nombre, `locale` = séparateurs.
 // THB : ฿1,290 (symbole avant, séparateur virgule)
 // VND : 900.000₫ (symbole après, séparateur point — convention vi-VN)
