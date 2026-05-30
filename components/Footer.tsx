@@ -18,7 +18,7 @@ export default function Footer({ t, locale }: { t: T; locale: string }) {
             <p className="text-xs text-white/30 mt-1">{t.footer.location}</p>
           </div>
           <div className="space-y-2">
-            <a href="#features" className="block text-sm text-white/50 hover:text-white/80">{t.footer.features}</a>
+            <Link href={`/${locale}/features`} className="block text-sm text-white/50 hover:text-white/80">{t.footer.features}</Link>
             <Link href={`/${locale}/blog`} className="block text-sm text-white/50 hover:text-white/80">{t.footer.blog}</Link>
             <Link href={`/${locale}/contact`} className="block text-sm text-white/50 hover:text-white/80">{t.footer.contact}</Link>
             <a href={`mailto:${t.footer.email}`} className="block text-sm text-white/50 hover:text-white/80">{t.footer.email}</a>
