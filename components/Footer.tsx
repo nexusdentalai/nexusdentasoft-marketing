@@ -20,6 +20,7 @@ export default function Footer({ t, locale }: { t: T; locale: string }) {
           <div className="space-y-2">
             <a href="#features" className="block text-sm text-white/50 hover:text-white/80">{t.footer.features}</a>
             <Link href={`/${locale}/blog`} className="block text-sm text-white/50 hover:text-white/80">{t.footer.blog}</Link>
+            <Link href={`/${locale}/contact`} className="block text-sm text-white/50 hover:text-white/80">{t.footer.contact}</Link>
             <a href={`mailto:${t.footer.email}`} className="block text-sm text-white/50 hover:text-white/80">{t.footer.email}</a>
           </div>
           <div className="flex items-end">

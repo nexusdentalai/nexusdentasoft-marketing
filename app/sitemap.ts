@@ -26,6 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     })
+    pages.push({
+      url: `${base}/${locale}/contact`,
+      lastModified: today,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })
     for (const slug of ['best-free-dental-pms-thailand-2025', 'manage-dental-clinic-southeast-asia', 'free-vs-paid-dental-software']) {
       pages.push({
         url: `${base}/${locale}/blog/${slug}`,
