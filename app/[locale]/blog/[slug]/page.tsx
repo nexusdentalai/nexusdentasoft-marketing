@@ -115,30 +115,30 @@ export default function BlogArticle({ params }: Props) {
   const article = CONTENT[params.locale]?.[params.slug] ?? CONTENT.en?.[params.slug]
   if (!article) notFound()
 
-  // Simple markdown-ish rendering
+  // Simple markdown-ish rendering (tokens C1 warm V2)
   const html = article.body
-    .replace(/^## (.+)$/gm, '<h2 class="text-xl font-bold text-[#0f2744] mt-8 mb-3">$1</h2>')
-    .replace(/^### (.+)$/gm, '<h3 class="text-base font-bold text-[#0f2744] mt-6 mb-2">$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2 class="text-xl font-bold text-w-900 mt-8 mb-3">$1</h2>')
+    .replace(/^### (.+)$/gm, '<h3 class="text-base font-bold text-w-900 mt-6 mb-2">$1</h3>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/^- (.+)$/gm, '<li class="ml-4 text-gray-700">$1</li>')
-    .replace(/\n\n/g, '</p><p class="text-sm text-gray-700 leading-relaxed mb-4">')
+    .replace(/^- (.+)$/gm, '<li class="ml-4 text-w-700">$1</li>')
+    .replace(/\n\n/g, '</p><p class="text-sm text-w-700 leading-relaxed mb-4">')
 
   return (
     <div className="pt-24 pb-20 px-4">
       <div className="max-w-3xl mx-auto">
-        <Link href={`/${params.locale}/blog`} className="text-sm text-[#2e7df7] hover:underline mb-4 inline-block">
+        <Link href={`/${params.locale}/blog`} className="text-sm text-gold-dark hover:underline mb-4 inline-block">
           ← Blog
         </Link>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0f2744] mb-6">{article.title}</h1>
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-w-900 mb-6">{article.title}</h1>
         <article className="prose prose-sm max-w-none">
-          <p className="text-sm text-gray-700 leading-relaxed mb-4"
+          <p className="text-sm text-w-700 leading-relaxed mb-4"
             dangerouslySetInnerHTML={{ __html: html }} />
         </article>
 
-        <div className="mt-12 p-6 bg-[#f5f6f8] rounded-xl text-center">
-          <h3 className="font-bold text-[#0f2744] mb-2">Ready to try NexusDentaSoft?</h3>
+        <div className="mt-12 p-6 bg-w-50 rounded-xl text-center">
+          <h3 className="font-bold text-w-900 mb-2">Ready to try NexusDentaSoft?</h3>
           <a href={`https://app.nexusdentasoft.com/register`}
-            className="inline-block mt-2 px-6 py-2.5 bg-[#2e7df7] text-white font-semibold rounded-lg hover:bg-blue-600 text-sm">
+            className="inline-block mt-2 px-6 py-2.5 bg-gold text-w-0 font-semibold rounded-lg hover:bg-gold-dark text-sm">
             Start Free →
           </a>
         </div>

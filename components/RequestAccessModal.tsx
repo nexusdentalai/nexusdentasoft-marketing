@@ -100,7 +100,7 @@ export default function RequestAccessModal({
 
   const modalContent = (
     <div
-      className="fixed inset-0 z-[100] overflow-y-auto bg-[#0b1d33]/80 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] overflow-y-auto bg-w-900/80 backdrop-blur-sm"
       style={{ animation: 'rfaModalFade 0.2s ease-out' }}
       role="dialog"
       aria-modal="true"
@@ -112,15 +112,15 @@ export default function RequestAccessModal({
       >
         <div
           onClick={e => e.stopPropagation()}
-          className="my-auto bg-white rounded-2xl shadow-2xl w-full max-w-md p-7 sm:p-8 relative"
-          style={{ animation: 'rfaModalPop 0.25s ease-out', boxShadow: '0 20px 60px rgba(26,39,64,0.25)' }}
+          className="my-auto bg-surface rounded-2xl shadow-2xl w-full max-w-md p-7 sm:p-8 relative"
+          style={{ animation: 'rfaModalPop 0.25s ease-out', boxShadow: '0 20px 60px rgba(28,27,26,0.25)' }}
         >
         <button
           type="button"
           onClick={handleClose}
           disabled={status === 'submitting'}
           aria-label={pb.modal.close}
-          className="absolute top-4 right-4 p-1 text-[#B0B8C9] hover:text-[#1A2740] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          className="absolute top-4 right-4 p-1 text-w-500 hover:text-w-900 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -129,23 +129,23 @@ export default function RequestAccessModal({
 
         {status === 'success' ? (
           <div className="text-center py-4">
-            <div className="w-14 h-14 rounded-full bg-[#DBEAFE] flex items-center justify-center mx-auto mb-5">
-              <svg className="w-7 h-7 text-[#2563EB]" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+            <div className="w-14 h-14 rounded-full bg-gold-50 flex items-center justify-center mx-auto mb-5">
+              <svg className="w-7 h-7 text-gold-dark" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <h3
               id="rfa-modal-title"
-              className="text-2xl text-[#1A2740] mb-3"
+              className="text-2xl text-w-900 mb-3"
               style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 400 }}
             >
               {pb.confirmation.title}
             </h3>
-            <p className="text-sm text-[#7A8699] leading-relaxed mb-6">{pb.confirmation.body}</p>
+            <p className="text-sm text-w-700 leading-relaxed mb-6">{pb.confirmation.body}</p>
             <button
               type="button"
               onClick={handleClose}
-              className="px-6 py-2.5 bg-[#2563EB] text-white text-sm font-medium rounded-[10px] hover:bg-[#1B3A6B] transition-colors"
+              className="px-6 py-2.5 bg-gold text-w-0 text-sm font-medium rounded-[10px] hover:bg-gold-dark transition-colors"
             >
               {pb.confirmation.close}
             </button>
@@ -154,15 +154,15 @@ export default function RequestAccessModal({
           <>
             <h3
               id="rfa-modal-title"
-              className="text-2xl text-[#1A2740] mb-1 pr-8"
+              className="text-2xl text-w-900 mb-1 pr-8"
               style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 400 }}
             >
               {pb.modal.title}
             </h3>
-            <p className="text-sm text-[#7A8699] mb-6">{pb.modal.subtitle}</p>
+            <p className="text-sm text-w-700 mb-6">{pb.modal.subtitle}</p>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="rfa-practice" className="block text-xs font-medium text-[#1A2740] mb-1.5">
+                <label htmlFor="rfa-practice" className="block text-xs font-medium text-w-900 mb-1.5">
                   {pb.modal.practiceName}
                 </label>
                 <input
@@ -172,11 +172,11 @@ export default function RequestAccessModal({
                   value={practiceName}
                   onChange={e => setPracticeName(e.target.value)}
                   disabled={status === 'submitting'}
-                  className="w-full border border-[#DDE3EE] rounded-[10px] px-4 py-2.5 text-sm text-[#1A2740] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/10 outline-none transition-all disabled:bg-gray-50"
+                  className="w-full border border-w-200 rounded-[10px] px-4 py-2.5 text-sm text-w-900 focus:border-gold focus:ring-2 focus:ring-gold-50 outline-none transition-all disabled:bg-w-50"
                 />
               </div>
               <div>
-                <label htmlFor="rfa-email" className="block text-xs font-medium text-[#1A2740] mb-1.5">
+                <label htmlFor="rfa-email" className="block text-xs font-medium text-w-900 mb-1.5">
                   {pb.modal.email}
                 </label>
                 <input
@@ -186,11 +186,11 @@ export default function RequestAccessModal({
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   disabled={status === 'submitting'}
-                  className="w-full border border-[#DDE3EE] rounded-[10px] px-4 py-2.5 text-sm text-[#1A2740] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/10 outline-none transition-all disabled:bg-gray-50"
+                  className="w-full border border-w-200 rounded-[10px] px-4 py-2.5 text-sm text-w-900 focus:border-gold focus:ring-2 focus:ring-gold-50 outline-none transition-all disabled:bg-w-50"
                 />
               </div>
               <div>
-                <label htmlFor="rfa-country" className="block text-xs font-medium text-[#1A2740] mb-1.5">
+                <label htmlFor="rfa-country" className="block text-xs font-medium text-w-900 mb-1.5">
                   {pb.modal.country}
                 </label>
                 <select
@@ -199,7 +199,7 @@ export default function RequestAccessModal({
                   value={country}
                   onChange={e => setCountry(e.target.value)}
                   disabled={status === 'submitting'}
-                  className="w-full border border-[#DDE3EE] rounded-[10px] px-4 py-2.5 text-sm text-[#1A2740] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/10 outline-none transition-all disabled:bg-gray-50 bg-white"
+                  className="w-full border border-w-200 rounded-[10px] px-4 py-2.5 text-sm text-w-900 focus:border-gold focus:ring-2 focus:ring-gold-50 outline-none transition-all disabled:bg-w-50 bg-surface"
                 >
                   <option value="" disabled>{pb.modal.placeholder}</option>
                   {COUNTRIES.map(c => (
@@ -208,15 +208,15 @@ export default function RequestAccessModal({
                 </select>
               </div>
               <div>
-                <label htmlFor="rfa-source" className="block text-xs font-medium text-[#1A2740] mb-1.5">
-                  {pb.modal.source} <span className="text-[#B0B8C9] font-normal">{pb.modal.sourceOptional}</span>
+                <label htmlFor="rfa-source" className="block text-xs font-medium text-w-900 mb-1.5">
+                  {pb.modal.source} <span className="text-w-500 font-normal">{pb.modal.sourceOptional}</span>
                 </label>
                 <select
                   id="rfa-source"
                   value={source}
                   onChange={e => setSource(e.target.value)}
                   disabled={status === 'submitting'}
-                  className="w-full border border-[#DDE3EE] rounded-[10px] px-4 py-2.5 text-sm text-[#1A2740] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/10 outline-none transition-all disabled:bg-gray-50 bg-white"
+                  className="w-full border border-w-200 rounded-[10px] px-4 py-2.5 text-sm text-w-900 focus:border-gold focus:ring-2 focus:ring-gold-50 outline-none transition-all disabled:bg-w-50 bg-surface"
                 >
                   <option value="">{pb.modal.placeholder}</option>
                   {SOURCES.map(s => (
@@ -230,7 +230,7 @@ export default function RequestAccessModal({
               <button
                 type="submit"
                 disabled={status === 'submitting'}
-                className="w-full px-6 py-3 bg-[#2563EB] text-white text-sm font-semibold rounded-[10px] hover:bg-[#1B3A6B] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full px-6 py-3 bg-gold text-w-0 text-sm font-semibold rounded-[10px] hover:bg-gold-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {status === 'submitting' ? pb.modal.submitting : pb.modal.submit}
               </button>
