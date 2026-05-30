@@ -6,5 +6,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =============================================================================
+   Tokens V2 Editorial Warm (light only) — miroir du PMS (app/globals.css :root).
+   Décision Lot C1 : marketing 100% clair → pas de variante dark. Toute couleur
+   doit passer par ces vars + les utilities Tailwind (bg-gold, text-w-900, etc.).
+   ============================================================================= */
+:root {
+  /* Warm gray — 10 paliers (miroir du PMS, mode light) */
+  --w-0:   #fdfcfa;
+  --w-25:  #faf6ee;   /* fond crème principal du site */
+  --w-50:  #f5efe2;
+  --w-75:  #f0e8d8;
+  --w-100: #ebe9e6;
+  --w-200: #e3d6bd;   /* bordures gold clair */
+  --w-300: #cfc4a8;
+  --w-500: #9a8d72;   /* texte faint */
+  --w-700: #6b6863;   /* texte muted */
+  --w-900: #1c1b1a;   /* texte principal / ink */
+
+  /* Brand gold */
+  --gold:      #b8852f;
+  --gold-dark: #946813;   /* gold foncé pour texte sur fond clair (lisibilité) */
+  --gold-50:   #f7f0dc;
+  --gold-bg:   rgba(184,133,47,0.12);
+  --focus-ring:#a07320;   /* WCAG AA */
+
+  /* CTA primaire espresso (miroir --nexus-invert-bg du PMS) */
+  --espresso:      #2a241b;
+  --espresso-text: #ffffff;
+
+  /* Surfaces & bordures (statiques, pas de switch runtime) */
+  --surface:        #ffffff;
+  --bg:             #fafafa;
+  --border-default: #ebe9e6;
+  --border-soft:    #f0eeec;
+  --text-primary:   #1c1b1a;
+  --text-secondary: #3d3b38;
+  --text-muted:     #6b6863;
+}
+
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
