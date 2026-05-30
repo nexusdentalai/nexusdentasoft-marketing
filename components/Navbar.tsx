@@ -35,6 +35,7 @@ export default function Navbar({ t, locale }: { t: T; locale: string }) {
           <Link href={`/${locale}/features`} className="text-sm text-w-700 hover:text-gold-dark">{t.nav.features}</Link>
           <Link href={`/${locale}/pricing`} className="text-sm text-w-700 hover:text-gold-dark">{t.nav.pricing}</Link>
           <Link href={`/${locale}/blog`} className="text-sm text-w-700 hover:text-gold-dark">{t.nav.blog}</Link>
+          <Link href={`/${locale}/contact`} className="text-sm text-w-700 hover:text-gold-dark">{t.nav.contact}</Link>
           <div className="flex border border-w-200 rounded-lg overflow-hidden">
             {LOCALES.map(l => (
               <Link key={l.code} href={`/${l.code}`}
@@ -61,6 +62,7 @@ export default function Navbar({ t, locale }: { t: T; locale: string }) {
           <Link href={`/${locale}/features`} onClick={() => setMenu(false)} className="block text-sm text-w-700">{t.nav.features}</Link>
           <Link href={`/${locale}/pricing`} onClick={() => setMenu(false)} className="block text-sm text-w-700">{t.nav.pricing}</Link>
           <Link href={`/${locale}/blog`} onClick={() => setMenu(false)} className="block text-sm text-w-700">{t.nav.blog}</Link>
+          <Link href={`/${locale}/contact`} onClick={() => setMenu(false)} className="block text-sm text-w-700">{t.nav.contact}</Link>
           <div className="flex gap-2">
             {LOCALES.map(l => (
               <Link key={l.code} href={`/${l.code}`} onClick={() => setMenu(false)}

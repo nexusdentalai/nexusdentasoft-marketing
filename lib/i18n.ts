@@ -3,7 +3,7 @@ export type Locale = (typeof locales)[number]
 
 export const translations: Record<Locale, Record<string, any>> = {
   en: {
-    nav: { features: 'Features', pricing: 'Pricing', blog: 'Blog', login: 'Login', cta: 'Start Free' },
+    nav: { features: 'Features', pricing: 'Pricing', blog: 'Blog', contact: 'Contact', login: 'Login', cta: 'Start Free' },
     hero: {
       // h1 = texte complet utilisé pour SEO/metadata (page.tsx). h1a + h1accent =
       // split rendu visuel (accent gold italic). Garde la cohérence indexable.
@@ -317,7 +317,7 @@ export const translations: Record<Locale, Record<string, any>> = {
     },
   },
   th: {
-    nav: { features: 'ฟีเจอร์', pricing: 'ราคา', blog: 'บล็อก', login: 'เข้าสู่ระบบ', cta: 'เริ่มฟรี' },
+    nav: { features: 'ฟีเจอร์', pricing: 'ราคา', blog: 'บล็อก', contact: 'ติดต่อ', login: 'เข้าสู่ระบบ', cta: 'เริ่มฟรี' },
     hero: {
       // TODO i18n-review (Joel) — traductions TH provisoires, à valider locuteur natif.
       h1: 'ผู้ช่วยทันตกรรมของคุณ ขับเคลื่อนด้วย AI',
@@ -622,7 +622,7 @@ export const translations: Record<Locale, Record<string, any>> = {
     },
   },
   vn: {
-    nav: { features: 'Tính năng', pricing: 'Bảng giá', blog: 'Blog', login: 'Đăng nhập', cta: 'Bắt đầu miễn phí' },
+    nav: { features: 'Tính năng', pricing: 'Bảng giá', blog: 'Blog', contact: 'Liên hệ', login: 'Đăng nhập', cta: 'Bắt đầu miễn phí' },
     hero: {
       // TODO i18n-review (Jessie) — traductions VN provisoires, à valider locuteur natif.
       h1: 'Trợ lý nha khoa của bạn, tích hợp AI',
