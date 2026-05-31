@@ -3,6 +3,7 @@ import { useState } from 'react'
 import RequestAccessModal from './RequestAccessModal'
 import type { Currency, PlanId } from '@/lib/pricing-config'
 import { formatPrice, PRICES } from '@/lib/pricing-config'
+import { buildRegisterUrl } from '@/lib/register-url'
 
 type T = Record<string, any>
 
@@ -17,12 +18,11 @@ const PLANS: Array<{ id: PlanId; featured?: boolean }> = [
 type Feature = { text: string; included?: boolean }
 
 export default function Pricing({
-  t, locale, currency, registerUrl,
+  t, locale, currency,
 }: {
   t: T
   locale: string
   currency: Currency
-  registerUrl: string
 }) {
   const [reqOpen, setReqOpen] = useState(false)
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
@@ -66,8 +66,9 @@ export default function Pricing({
               ? 'block w-full text-center px-5 py-3 bg-gold text-w-0 font-semibold rounded-[10px] hover:bg-gold-dark transition-colors'
               : 'block w-full text-center px-5 py-3 bg-surface border border-gold text-gold-dark font-semibold rounded-[10px] hover:bg-gold-50 transition-colors'
 
+            const planUrl = buildRegisterUrl(locale, { plan: plan.id, source: 'pricing' })
             const ctaContent = signupsOpen ? (
-              <a href={`${registerUrl}?plan=${plan.id}`} className={ctaClass}>{planT.cta}</a>
+              <a href={planUrl} className={ctaClass}>{planT.cta}</a>
             ) : (
               <button type="button" onClick={() => setReqOpen(true)} className={ctaClass}>{planT.cta}</button>
             )

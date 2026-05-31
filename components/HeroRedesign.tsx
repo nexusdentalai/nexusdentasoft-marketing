@@ -1,5 +1,6 @@
 'use client'
 import type { Currency } from '@/lib/pricing-config'
+import { buildRegisterUrl } from '@/lib/register-url'
 
 type T = Record<string, any>
 
@@ -20,9 +21,9 @@ const DASHBOARD_STATS = [
 const BAR_HEIGHTS = [40, 60, 50, 95, 70, 55, 45]  // index 3 (pic) = gold
 
 export default function HeroRedesign({
-  t, currency, onWaitlist,
-}: { t: T; currency: Currency; onWaitlist: () => void }) {
-  const registerUrl = `https://app.nexusdentasoft.com/register`
+  t, locale, currency, onWaitlist,
+}: { t: T; locale: string; currency: Currency; onWaitlist: () => void }) {
+  const registerUrl = buildRegisterUrl(locale, { source: 'hero' })
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
 
   const primaryCta = signupsOpen ? (

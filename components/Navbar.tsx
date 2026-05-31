@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import RequestAccessModal from './RequestAccessModal'
+import { buildRegisterUrl } from '@/lib/register-url'
 
 type T = Record<string, any>
 const LOCALES = [
@@ -15,7 +16,7 @@ export default function Navbar({ t, locale }: { t: T; locale: string }) {
   const [reqOpen, setReqOpen] = useState(false)
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
   const ctaLabel = signupsOpen ? t.nav.cta : t.privateBeta.navCta
-  const ctaHref = 'https://app.nexusdentasoft.com/register'
+  const ctaHref = buildRegisterUrl(locale, { source: 'navbar' })
 
   function openModal() {
     setMenu(false)

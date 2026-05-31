@@ -4,6 +4,7 @@ import HeroRedesign from './HeroRedesign'
 import RequestAccessModal from './RequestAccessModal'
 import Footer from './Footer'
 import type { Currency } from '@/lib/pricing-config'
+import { buildRegisterUrl } from '@/lib/register-url'
 
 type T = Record<string, any>
 
@@ -28,7 +29,7 @@ const LOCKIN_CARDS: Array<{ icon: string; titleKey: string; descKey: string }> =
 ]
 
 export default function HomePage({ t, locale, currency }: { t: T; locale: string; currency: Currency }) {
-  const registerUrl = `https://app.nexusdentasoft.com/register`
+  const registerUrl = buildRegisterUrl(locale, { source: 'home-cta' })
   const [reqOpen, setReqOpen] = useState(false)
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
   const r1 = useReveal(), r2 = useReveal(), r3 = useReveal(), r4 = useReveal()
@@ -36,7 +37,7 @@ export default function HomePage({ t, locale, currency }: { t: T; locale: string
   return (
     <>
       {/* ── HERO (Lot H1) ─────────────────────────── */}
-      <HeroRedesign t={t} currency={currency} onWaitlist={() => setReqOpen(true)} />
+      <HeroRedesign t={t} locale={locale} currency={currency} onWaitlist={() => setReqOpen(true)} />
 
       {/* ── A. BANDEAU CITATION ATHIPAN ───────────── */}
       {/* ⚠ Citation nominative codée mais NON-PUBLIABLE sans accord écrit (dormant B-SITE-ATHIPAN-ACCORD). */}

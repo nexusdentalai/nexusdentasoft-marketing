@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { buildRegisterUrl } from '@/lib/register-url'
 
 type Props = { params: { locale: string; slug: string } }
 
@@ -137,7 +138,7 @@ export default function BlogArticle({ params }: Props) {
 
         <div className="mt-12 p-6 bg-w-50 rounded-xl text-center">
           <h3 className="font-bold text-w-900 mb-2">Ready to try NexusDentaSoft?</h3>
-          <a href={`https://app.nexusdentasoft.com/register`}
+          <a href={buildRegisterUrl(params.locale, { source: 'blog' })}
             className="inline-block mt-2 px-6 py-2.5 bg-gold text-w-0 font-semibold rounded-lg hover:bg-gold-dark text-sm">
             Start Free →
           </a>
