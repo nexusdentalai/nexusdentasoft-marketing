@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 export default function ContactPage({ params }: { params: { locale: string } }) {
   const t = getT(params.locale)
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
-  const registerUrl = buildRegisterUrl(params.locale, { source: 'contact' })
+  const registerUrl = buildRegisterUrl(params.locale, { plan: 'free', source: 'contact' })
 
   return (
     <>

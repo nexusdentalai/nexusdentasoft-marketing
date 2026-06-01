@@ -1,6 +1,4 @@
 'use client'
-import { useState } from 'react'
-import RequestAccessModal from './RequestAccessModal'
 
 type T = Record<string, any>
 
@@ -193,7 +191,6 @@ export default function Features({
   signupsOpen: boolean
   registerUrl: string
 }) {
-  const [reqOpen, setReqOpen] = useState(false)
   const f = t.features
 
   return (
@@ -286,22 +283,15 @@ export default function Features({
             {f.ctaTitle}
           </h2>
           <p className="text-w-300 text-base mb-8 max-w-xl mx-auto">{f.ctaSubtitle}</p>
-          {signupsOpen ? (
+          {signupsOpen && (
             <a href={registerUrl}
               className="inline-block px-8 py-3 bg-gold text-w-0 font-semibold rounded-[10px] hover:bg-gold-dark transition-colors shadow-sm">
               {f.ctaButton}
             </a>
-          ) : (
-            <button type="button" onClick={() => setReqOpen(true)}
-              className="inline-block px-8 py-3 bg-gold text-w-0 font-semibold rounded-[10px] hover:bg-gold-dark transition-colors shadow-sm">
-              {f.ctaButton}
-            </button>
           )}
         </div>
 
       </div>
-
-      <RequestAccessModal isOpen={reqOpen} onClose={() => setReqOpen(false)} t={t} locale={locale} />
 
       <style jsx>{`
         .moment-card {

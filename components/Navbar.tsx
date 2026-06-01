@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import RequestAccessModal from './RequestAccessModal'
 import { buildRegisterUrl } from '@/lib/register-url'
 
 type T = Record<string, any>
@@ -13,15 +12,9 @@ const LOCALES = [
 
 export default function Navbar({ t, locale }: { t: T; locale: string }) {
   const [menu, setMenu] = useState(false)
-  const [reqOpen, setReqOpen] = useState(false)
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
-  const ctaLabel = signupsOpen ? t.nav.cta : t.privateBeta.navCta
-  const ctaHref = buildRegisterUrl(locale, { source: 'navbar' })
-
-  function openModal() {
-    setMenu(false)
-    setReqOpen(true)
-  }
+  const ctaLabel = t.nav.cta
+  const ctaHref = buildRegisterUrl(locale, { plan: 'free', source: 'navbar' })
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-w-100">
@@ -46,10 +39,8 @@ export default function Navbar({ t, locale }: { t: T; locale: string }) {
             ))}
           </div>
           <a href="https://app.nexusdentasoft.com/login" className="text-sm text-w-500 hover:text-gold-dark">{t.nav.login}</a>
-          {signupsOpen ? (
+          {signupsOpen && (
             <a href={ctaHref} className="px-4 py-2 bg-gold text-w-0 text-sm font-semibold rounded-lg hover:bg-gold-dark shadow-sm">{ctaLabel}</a>
-          ) : (
-            <button type="button" onClick={openModal} className="px-4 py-2 bg-gold text-w-0 text-sm font-semibold rounded-lg hover:bg-gold-dark shadow-sm">{ctaLabel}</button>
           )}
         </div>
         <button onClick={() => setMenu(!menu)} className="md:hidden p-2 text-w-700">
@@ -70,14 +61,11 @@ export default function Navbar({ t, locale }: { t: T; locale: string }) {
                 className={`px-2.5 py-1 rounded text-xs ${locale === l.code ? 'bg-gold text-w-0' : 'text-w-700 bg-w-100'}`}>{l.code.toUpperCase()}</Link>
             ))}
           </div>
-          {signupsOpen ? (
+          {signupsOpen && (
             <a href={ctaHref} onClick={() => setMenu(false)} className="block px-4 py-2 bg-gold text-w-0 text-sm font-semibold rounded-lg text-center">{ctaLabel}</a>
-          ) : (
-            <button type="button" onClick={openModal} className="block w-full px-4 py-2 bg-gold text-w-0 text-sm font-semibold rounded-lg text-center">{ctaLabel}</button>
           )}
         </div>
       )}
-      <RequestAccessModal isOpen={reqOpen} onClose={() => setReqOpen(false)} t={t} locale={locale} />
     </nav>
   )
 }

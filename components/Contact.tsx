@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import RequestAccessModal from './RequestAccessModal'
 import { COMPANY } from '@/lib/company-info'
 
 type T = Record<string, any>
@@ -21,7 +20,6 @@ export default function Contact({
   signupsOpen: boolean
   registerUrl: string
 }) {
-  const [reqOpen, setReqOpen] = useState(false)
   const c = t.contact
   const f = c.form
 
@@ -222,22 +220,15 @@ export default function Contact({
             {c.ctaTitle}
           </h2>
           <p className="text-w-300 text-base mb-8 max-w-xl mx-auto">{c.ctaSubtitle}</p>
-          {signupsOpen ? (
+          {signupsOpen && (
             <a href={registerUrl}
               className="inline-block px-8 py-3 bg-gold text-w-0 font-semibold rounded-[10px] hover:bg-gold-dark transition-colors shadow-sm">
               {c.ctaButton}
             </a>
-          ) : (
-            <button type="button" onClick={() => setReqOpen(true)}
-              className="inline-block px-8 py-3 bg-gold text-w-0 font-semibold rounded-[10px] hover:bg-gold-dark transition-colors shadow-sm">
-              {c.ctaButton}
-            </button>
           )}
         </div>
 
       </div>
-
-      <RequestAccessModal isOpen={reqOpen} onClose={() => setReqOpen(false)} t={t} locale={locale} />
 
       <style jsx>{`
         .contact-map {

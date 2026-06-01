@@ -21,22 +21,10 @@ const DASHBOARD_STATS = [
 const BAR_HEIGHTS = [40, 60, 50, 95, 70, 55, 45]  // index 3 (pic) = gold
 
 export default function HeroRedesign({
-  t, locale, currency, onWaitlist,
-}: { t: T; locale: string; currency: Currency; onWaitlist: () => void }) {
-  const registerUrl = buildRegisterUrl(locale, { source: 'hero' })
+  t, locale, currency,
+}: { t: T; locale: string; currency: Currency }) {
+  const registerUrl = buildRegisterUrl(locale, { plan: 'free', source: 'hero' })
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
-
-  const primaryCta = signupsOpen ? (
-    <a href={registerUrl}
-      className="px-7 py-3 bg-gold text-w-0 text-sm font-semibold rounded-[10px] hover:bg-gold-dark transition-colors shadow-sm">
-      {t.hero.cta}
-    </a>
-  ) : (
-    <button type="button" onClick={onWaitlist}
-      className="px-7 py-3 bg-gold text-w-0 text-sm font-semibold rounded-[10px] hover:bg-gold-dark transition-colors shadow-sm">
-      {t.hero.cta}
-    </button>
-  )
 
   return (
     // data-currency : prop drillée depuis page.tsx (résolution serveur). Pas
@@ -67,7 +55,12 @@ export default function HeroRedesign({
 
         {/* Double CTA centré */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
-          {primaryCta}
+          {signupsOpen && (
+            <a href={registerUrl}
+              className="px-7 py-3 bg-gold text-w-0 text-sm font-semibold rounded-[10px] hover:bg-gold-dark transition-colors shadow-sm">
+              {t.hero.cta}
+            </a>
+          )}
           <a href="#features"
             className="px-7 py-3 bg-surface text-w-900 border border-w-200 text-sm font-medium rounded-[10px] hover:border-gold hover:text-gold-dark transition-all">
             {t.hero.ctaSecondary}

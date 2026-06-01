@@ -1,6 +1,4 @@
 'use client'
-import { useState } from 'react'
-import RequestAccessModal from './RequestAccessModal'
 import type { Currency, PlanId } from '@/lib/pricing-config'
 import { formatPrice, PRICES } from '@/lib/pricing-config'
 import { buildRegisterUrl } from '@/lib/register-url'
@@ -24,7 +22,6 @@ export default function Pricing({
   locale: string
   currency: Currency
 }) {
-  const [reqOpen, setReqOpen] = useState(false)
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
 
   return (
@@ -67,10 +64,8 @@ export default function Pricing({
               : 'block w-full text-center px-5 py-3 bg-surface border border-gold text-gold-dark font-semibold rounded-[10px] hover:bg-gold-50 transition-colors'
 
             const planUrl = buildRegisterUrl(locale, { plan: plan.id, source: 'pricing' })
-            const ctaContent = signupsOpen ? (
+            const ctaContent = signupsOpen && (
               <a href={planUrl} className={ctaClass}>{planT.cta}</a>
-            ) : (
-              <button type="button" onClick={() => setReqOpen(true)} className={ctaClass}>{planT.cta}</button>
             )
 
             return (
@@ -113,8 +108,6 @@ export default function Pricing({
         </p>
 
       </div>
-
-      <RequestAccessModal isOpen={reqOpen} onClose={() => setReqOpen(false)} t={t} locale={locale} />
 
       <style jsx>{`
         .plan-card {

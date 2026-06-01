@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import HeroRedesign from './HeroRedesign'
-import RequestAccessModal from './RequestAccessModal'
 import Footer from './Footer'
 import type { Currency } from '@/lib/pricing-config'
 import { buildRegisterUrl } from '@/lib/register-url'
@@ -29,15 +28,14 @@ const LOCKIN_CARDS: Array<{ icon: string; titleKey: string; descKey: string }> =
 ]
 
 export default function HomePage({ t, locale, currency }: { t: T; locale: string; currency: Currency }) {
-  const registerUrl = buildRegisterUrl(locale, { source: 'home-cta' })
-  const [reqOpen, setReqOpen] = useState(false)
+  const registerUrl = buildRegisterUrl(locale, { plan: 'free', source: 'home-cta' })
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
   const r1 = useReveal(), r2 = useReveal(), r3 = useReveal(), r4 = useReveal()
 
   return (
     <>
       {/* ── HERO (Lot H1) ─────────────────────────── */}
-      <HeroRedesign t={t} locale={locale} currency={currency} onWaitlist={() => setReqOpen(true)} />
+      <HeroRedesign t={t} locale={locale} currency={currency} />
 
       {/* ── A. BANDEAU CITATION ATHIPAN ───────────── */}
       {/* ⚠ Citation nominative codée mais NON-PUBLIABLE sans accord écrit (dormant B-SITE-ATHIPAN-ACCORD). */}
@@ -147,34 +145,22 @@ export default function HomePage({ t, locale, currency }: { t: T; locale: string
         <div className={`max-w-3xl mx-auto text-center ${r4.cls}`}>
           <h2 className="text-3xl sm:text-4xl mb-5 leading-tight"
             style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 300 }}>
-            {signupsOpen ? t.cta.title : t.privateBeta.ctaBottomTitle}
+            {t.cta.title}
           </h2>
           <p className="text-base text-w-300 mb-10">
-            {signupsOpen ? t.cta.subtitle : t.privateBeta.ctaBottomSubtitle}
+            {t.cta.subtitle}
           </p>
-          {signupsOpen ? (
+          {signupsOpen && (
             <a href={registerUrl}
               className="inline-block px-10 py-4 bg-gold text-w-0 font-semibold rounded-[10px] hover:bg-gold-dark transition-colors shadow-sm">
               {t.cta.button}
             </a>
-          ) : (
-            <button type="button" onClick={() => setReqOpen(true)}
-              className="inline-block px-10 py-4 bg-gold text-w-0 font-semibold rounded-[10px] hover:bg-gold-dark transition-colors shadow-sm">
-              {t.privateBeta.ctaBottomButton}
-            </button>
-          )}
-          {!signupsOpen && (
-            <p className="text-xs text-w-500 mt-8 max-w-lg mx-auto leading-relaxed">
-              {t.privateBeta.bottomLimitedAccess}
-            </p>
           )}
         </div>
       </section>
 
       {/* ── FOOTER (composant consolidé H3 : espresso warm + gold + location + email) ─ */}
       <Footer t={t} locale={locale} />
-
-      <RequestAccessModal isOpen={reqOpen} onClose={() => setReqOpen(false)} t={t} locale={locale} />
 
       {/* Structured data SEO (préservé verbatim — featureList générique cohérent avec positioning copilote) */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
