@@ -10,6 +10,6 @@ export const COMPANY = {
   capital: '4,000,000 THB',
   incorporated: '26 March 2024',
   director: 'Mr. Styve Servant',
-  email: 'contact@nexusdentasia.com',
+  email: 'contact@nexusdentasoft.com',
   product: 'NexusDentaSoft',
 } as const

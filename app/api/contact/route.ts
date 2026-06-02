@@ -53,7 +53,7 @@ export async function POST(req: Request) {
 
   const resend = new Resend(apiKey)
   const from = process.env.CONTACT_FROM_EMAIL || 'onboarding@resend.dev'
-  const to = process.env.CONTACT_TO_EMAIL || 'contact@nexusdentasia.com'
+  const to = process.env.CONTACT_TO_EMAIL || 'contact@nexusdentasoft.com'
 
   try {
     // text: (pas html:) — évite toute injection HTML depuis les champs user.
