@@ -1,6 +1,6 @@
 import { headers } from 'next/headers'
 import { getT } from '@/lib/i18n'
-import { resolveCurrencyFromHeaders } from '@/lib/pricing-config'
+import { resolveCurrencyForLocale } from '@/lib/pricing-config'
 import Pricing from '@/components/Pricing'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -25,7 +25,8 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 
 export default function PricingPage({ params }: { params: { locale: string } }) {
   const t = getT(params.locale)
-  const currency = resolveCurrencyFromHeaders(headers())
+  // DV-1 : la locale de la page prime (vn→VND, th→THB) ; en→pays-IP.
+  const currency = resolveCurrencyForLocale(params.locale, headers())
   // registerUrl désormais construit par-plan dans <Pricing> via buildRegisterUrl
   // (helper Lot B-1 : lang + plan + source propagés).
 

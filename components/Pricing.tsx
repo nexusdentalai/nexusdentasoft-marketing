@@ -44,7 +44,7 @@ export default function Pricing({
 
         {/* note devise détectée */}
         <p className="text-center text-xs text-w-500 mb-12">
-          🌐 {t.pricing.currencyNote} — <span className="font-semibold text-w-900">{currency}</span>
+          🌐 {t.pricing.currencyNote} <span className="font-semibold text-w-900">{currency}</span>
         </p>
 
         {/* grille 3 cartes — Premium au centre, featured */}

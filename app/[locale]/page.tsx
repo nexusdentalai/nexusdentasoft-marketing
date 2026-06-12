@@ -1,6 +1,6 @@
 import { headers } from 'next/headers'
 import { getT } from '@/lib/i18n'
-import { resolveCurrency } from '@/lib/pricing-config'
+import { resolveCurrencyForLocale } from '@/lib/pricing-config'
 import HomePage from '@/components/HomePage'
 import Navbar from '@/components/Navbar'
 import type { Metadata } from 'next'
@@ -18,13 +18,12 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 export default function Page({ params }: { params: { locale: string } }) {
   const t = getT(params.locale)
 
-  // Détection pays serveur (Next 14.2 : headers() sync). NX_FAKE_COUNTRY = override
-  // DEV (header x-vercel-ip-country absent en local). Toute la logique pays/devise
-  // est centralisée dans lib/pricing-config.ts (Règle 11 source unique).
-  const rawCountry = process.env.NX_FAKE_COUNTRY ?? headers().get('x-vercel-ip-country') ?? null
-  const currency = resolveCurrency(rawCountry)
+  // DV-1 : la LOCALE prime (vn→VND, th→THB) ; 'en' → géo-IP (NX_FAKE_COUNTRY ??
+  // x-vercel-ip-country, fallback USD). Logique centralisée dans pricing-config.ts.
+  const currency = resolveCurrencyForLocale(params.locale, headers())
   if (process.env.NODE_ENV !== 'production') {
-    console.log(`[pricing] country=${rawCountry ?? '(none)'} → currency=${currency}`)
+    const rawCountry = process.env.NX_FAKE_COUNTRY ?? headers().get('x-vercel-ip-country') ?? null
+    console.log(`[pricing] locale=${params.locale} country=${rawCountry ?? '(none)'} → currency=${currency}`)
   }
   // TODO Phase 3b : <Pricing currency={currency} t={t} locale={params.locale} />
   // sera greffé dans HomePage entre <WhyFree /> et <Testimonials />. La prop

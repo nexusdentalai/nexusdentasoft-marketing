@@ -10,8 +10,8 @@ export type PlanId = 'free' | 'starter' | 'premium'
 // VND : pas de décimales d'usage ; les paliers psychologiques diffèrent par marché.
 export const PRICES: Record<PlanId, Record<Currency, number>> = {
   free:    { THB: 0,    VND: 0,       USD: 0  },
-  starter: { THB: 1290, VND: 900000,  USD: 35 },
-  premium: { THB: 2490, VND: 1800000, USD: 70 },
+  starter: { THB: 1299, VND: 900000,  USD: 35 },
+  premium: { THB: 2290, VND: 1800000, USD: 70 },
 }
 
 // Mapping ISO-3166 alpha-2 → devise. Tout pays non listé bascule sur USD.
@@ -31,6 +31,16 @@ export function resolveCurrency(country: string | null | undefined): Currency {
 export function resolveCurrencyFromHeaders(h: Headers): Currency {
   const raw = process.env.NX_FAKE_COUNTRY ?? h.get('x-vercel-ip-country') ?? null
   return resolveCurrency(raw)
+}
+
+// DV-1 : la LOCALE de la page PRIME sur la géo-IP. Une page /vn affiche toujours
+// VND, /th toujours THB — quel que soit le pays détecté. 'en' (et toute autre
+// locale) conserve la logique pays-IP (resolveCurrencyFromHeaders : NX_FAKE_COUNTRY
+// ?? x-vercel-ip-country, fallback USD). Corrige le bug « /vn depuis Bangkok = THB ».
+export function resolveCurrencyForLocale(locale: string, h: Headers): Currency {
+  if (locale === 'vn') return 'VND'
+  if (locale === 'th') return 'THB'
+  return resolveCurrencyFromHeaders(h)
 }
 
 // Format d'affichage par devise. `position` = avant/après le nombre, `locale` = séparateurs.
