@@ -28,7 +28,7 @@ export const translations: Record<Locale, Record<string, any>> = {
     // === Lot HOMEPAGE H2 — sections corps refondues ===
     quote: {
       text: "I've seen many PMS, but never one like this.",
-      authorName: 'Dr Athipan',
+      authorName: 'Dr Atiphan',
       authorRole: 'Maxillofacial surgeon',
     },
     paradigm: {
@@ -216,7 +216,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       mapCaption: 'Watthana district, Bangkok',
       form: {
         nameLabel: 'Your name',
-        namePlaceholder: 'Dr. Athipan',
+        namePlaceholder: 'Dr. Atiphan',
         emailLabel: 'Email',
         emailPlaceholder: 'you@clinic.com',
         cabinetLabel: 'Clinic (optional)',
@@ -308,7 +308,7 @@ export const translations: Record<Locale, Record<string, any>> = {
     // === Lot HOMEPAGE H2 — TODO i18n-review (Joel) traductions TH provisoires ===
     quote: {
       text: 'ฉันเคยเห็น PMS หลายตัว แต่ไม่เคยเห็นแบบนี้',
-      authorName: 'Dr Athipan',
+      authorName: 'Dr Atiphan',
       authorRole: 'ศัลยแพทย์ใบหน้าและขากรรไกร',
     },
     paradigm: {
@@ -486,7 +486,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       mapCaption: 'ย่านวัฒนา กรุงเทพฯ',
       form: {
         nameLabel: 'ชื่อของคุณ',
-        namePlaceholder: 'Dr. Athipan',
+        namePlaceholder: 'Dr. Atiphan',
         emailLabel: 'อีเมล',
         emailPlaceholder: 'you@clinic.com',
         cabinetLabel: 'คลินิก (ไม่บังคับ)',
@@ -580,7 +580,7 @@ export const translations: Record<Locale, Record<string, any>> = {
     // === Lot HOMEPAGE H2 — TODO i18n-review (Jessie) traductions VN provisoires ===
     quote: {
       text: 'Tôi đã xem nhiều PMS, nhưng chưa bao giờ thấy cái nào như thế này.',
-      authorName: 'Dr Athipan',
+      authorName: 'Dr Atiphan',
       authorRole: 'Bác sĩ phẫu thuật hàm mặt',
     },
     paradigm: {
@@ -758,7 +758,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       mapCaption: 'Khu Watthana, Bangkok',
       form: {
         nameLabel: 'Tên của bạn',
-        namePlaceholder: 'BS. Athipan',
+        namePlaceholder: 'BS. Atiphan',
         emailLabel: 'Email',
         emailPlaceholder: 'you@clinic.com',
         cabinetLabel: 'Phòng khám (không bắt buộc)',

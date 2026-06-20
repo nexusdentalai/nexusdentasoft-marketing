@@ -37,8 +37,9 @@ export default function HomePage({ t, locale, currency }: { t: T; locale: string
       {/* ── HERO (Lot H1) ─────────────────────────── */}
       <HeroRedesign t={t} locale={locale} currency={currency} />
 
-      {/* ── A. BANDEAU CITATION ATHIPAN ───────────── */}
-      {/* ⚠ Citation nominative codée mais NON-PUBLIABLE sans accord écrit (dormant B-SITE-ATHIPAN-ACCORD). */}
+      {/* ── A. BANDEAU CITATION ATIPHAN ───────────── */}
+      {/* Citation nominative Dr Atiphan — accord ecrit OBTENU (juin 2026) pour le TEXTE. Photo NON couverte
+          par l'accord -> garder les initiales DA, ne PAS ajouter de photo sans accord image separe. */}
       <section ref={r1.ref} className="bg-surface border-y border-w-100 py-10 px-4">
         <div className={`max-w-2xl mx-auto text-center ${r1.cls}`}>
           <p className="italic text-w-900 text-xl sm:text-2xl leading-snug"
