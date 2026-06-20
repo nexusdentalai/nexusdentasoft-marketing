@@ -1,7 +1,17 @@
 import type { Metadata } from 'next'
+import { JetBrains_Mono } from 'next/font/google'
 import { locales } from '@/lib/i18n'
 import GeoRedirect from '@/components/GeoRedirect'
 import '../globals.css'
+
+// P9-2 v2 : JetBrains Mono (self-hosted via next/font) — UNIQUEMENT pour le compteur
+// founder (Pricing.tsx), via la variable CSS --font-jetbrains. Weight 700 seul.
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: '700',
+  variable: '--font-jetbrains',
+  display: 'swap',
+})
 
 export function generateStaticParams() {
   return locales.map(locale => ({ locale }))
@@ -38,7 +48,7 @@ export default function LocaleLayout({
   params: { locale: string }
 }) {
   return (
-    <html lang={params.locale}>
+    <html lang={params.locale} className={jetbrainsMono.variable}>
       <body className="min-h-screen bg-white text-gray-900 antialiased">
         <GeoRedirect currentLocale={params.locale} />
         {children}

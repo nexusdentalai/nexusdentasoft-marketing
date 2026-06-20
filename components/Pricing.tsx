@@ -81,57 +81,71 @@ export default function Pricing({
           🌐 {t.pricing.currencyNote} <span className="font-semibold text-w-900">{currency}</span>
         </p>
 
-        {/* P9-2 RETOUCHE : BLOC HÉROS sombre (espresso) au-dessus de la grille. Masqué si
-            soldOut. seats>0 → titre AVEC {n} + tuile compteur {n}/100. null/undefined
-            (échec/chargement) → titre générique + tuile MASQUÉE (jamais de 0/flash). */}
+        {/* P9-2 v2 : PANNEAU CLAIR crème (relief : dégradé + ombre + reflet + liseré doré),
+            remplace le bloc sombre. Logique INCHANGÉE — masqué si soldOut ; seats>0 → titre
+            {n} + tuile {n}/100 ; null/undefined → titre générique + tuile MASQUÉE (pas de 0/flash). */}
         {founderActive && (
           <div
-            className="max-w-2xl mx-auto mb-12 rounded-[18px] px-6 py-9 text-center"
-            style={{ backgroundColor: 'var(--espresso)' }}
+            className="max-w-2xl mx-auto mb-12 text-center"
+            style={{
+              background: 'linear-gradient(180deg,#f7efdd 0%,#efe3c6 100%)',
+              border: '1px solid #d6bd82',
+              borderRadius: '18px',
+              padding: '1.7rem 1.5rem',
+              boxShadow: '0 10px 30px -12px rgba(120,90,30,0.30), inset 0 1px 0 rgba(255,255,255,0.6)',
+            }}
           >
-            {/* pastille Founder offer */}
+            {/* pastille Founder offer (= launchPriceLabel traduit) */}
             <span
-              className="inline-block px-3 py-1 rounded-full text-[12px] font-semibold uppercase tracking-[0.12em] mb-5"
-              style={{ backgroundColor: 'rgba(184,133,47,0.18)', border: '1px solid var(--gold)', color: '#e0a83e' }}
+              className="inline-flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.12em] mb-4"
+              style={{
+                backgroundColor: '#fffdf7', border: '1px solid #e2cf9c', borderRadius: '30px',
+                color: '#9a7421', padding: '0.3rem 0.8rem', boxShadow: '0 1px 4px rgba(150,110,30,0.12)',
+              }}
             >
+              <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: '#c89a3c', display: 'inline-block' }} />
               {t.pricing.launchPriceLabel}
             </span>
 
-            {/* titre fort (Fraunces, crème). {n} seulement si fiable. */}
+            {/* titre fort (Fraunces). {n} seulement si fiable. */}
             <h2
-              className="text-[24px] leading-snug mb-6"
-              style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 400, color: '#f7f0dc' }}
+              className="text-[22px] sm:text-[24px] leading-snug mb-5"
+              style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 400, color: '#3a3120' }}
             >
               {seatsKnown
                 ? t.pricing.founderHeroTitle.replace('{n}', String(seats))
                 : t.pricing.founderHeroTitleNoCount}
             </h2>
 
-            {/* TUILE compteur — affichée UNIQUEMENT si chiffre fiable (jamais de nombre figé). */}
+            {/* TUILE compteur relief 3D — UNIQUEMENT si chiffre fiable (jamais de nombre figé). */}
             {seatsKnown && (
-              <div className="mb-6">
+              <div className="mb-5">
                 <div
-                  className="inline-flex items-baseline gap-2 px-7 py-4 rounded-[12px]"
-                  style={{ backgroundColor: '#1a1611', border: '1px solid #3d3527' }}
+                  className="inline-flex items-baseline gap-2"
+                  style={{
+                    background: 'linear-gradient(180deg,#fcf4e0 0%,#f0e0b8 55%,#e8d4a4 100%)',
+                    border: '1px solid #c9ac68', borderRadius: '16px', padding: '0.65rem 2rem',
+                    boxShadow: '0 10px 22px -8px rgba(110,80,25,0.42), inset 0 1px 0 #fffefb, inset 0 0 0 1px rgba(255,255,255,0.3)',
+                  }}
                 >
                   <span
                     className="tabular-nums"
-                    style={{ fontFamily: "ui-monospace, 'SFMono-Regular', Menlo, monospace", fontSize: '64px', lineHeight: 1, color: '#f4c25a' }}
+                    style={{ fontFamily: 'var(--font-jetbrains), monospace', fontWeight: 700, fontSize: '56px', lineHeight: 1, color: '#201b14' }}
                   >
                     {seats}
                   </span>
-                  <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: '40px', color: '#6b5f47' }}>
-                    / 100
+                  <span style={{ fontFamily: 'var(--font-jetbrains), monospace', fontWeight: 700, fontSize: '28px', color: '#8a7d5e' }}>
+                    /100
                   </span>
                 </div>
-                <p className="mt-2 text-[12px] uppercase tracking-[0.12em]" style={{ color: '#8a7d63' }}>
+                <p className="mt-2 text-[12px] uppercase tracking-[0.12em]" style={{ color: '#a8946a' }}>
                   {t.pricing.seatsLeftLabel}
                 </p>
               </div>
             )}
 
             {/* garantie prix à vie */}
-            <p className="text-[13px] leading-relaxed mx-auto" style={{ color: '#8a7d63', maxWidth: '430px' }}>
+            <p className="text-[13px] leading-relaxed mx-auto" style={{ color: '#857851', maxWidth: '430px' }}>
               {t.pricing.lifetimeGuarantee}
             </p>
           </div>
