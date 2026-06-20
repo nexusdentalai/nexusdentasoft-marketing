@@ -201,13 +201,13 @@ export default function Pricing({
                     <div className="flex items-center gap-2 mb-1">
                       <span
                         className="tabular-nums"
-                        style={{ fontSize: '16px', textDecorationLine: 'line-through', textDecorationThickness: '2px', color: '#9a8a6a' }}
+                        style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: '26px', lineHeight: 1.1, textDecorationLine: 'line-through', textDecorationThickness: '2.5px', color: '#a3382d' }}
                       >
                         {formatRegularPrice(plan.id, currency)}
                       </span>
                       <span
-                        className="rounded-[5px] px-1.5 py-0.5 text-[11px] font-bold"
-                        style={{ backgroundColor: '#f7f0dc', color: '#7a5a1a' }}
+                        className="rounded-[5px] px-1.5 py-0.5 text-[12px] font-bold"
+                        style={{ backgroundColor: '#faeae8', color: '#a3382d' }}
                       >
                         −{founderDiscountPercent(plan.id, currency)}%
                       </span>
