@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import type { Currency, PlanId } from '@/lib/pricing-config'
-import { formatPrice, formatRegularPrice, hasFounderDiscount, PRICES } from '@/lib/pricing-config'
+import { formatPrice, formatRegularPrice, hasFounderDiscount, founderDiscountPercent, PRICES } from '@/lib/pricing-config'
 import { buildRegisterUrl } from '@/lib/register-url'
 
 // Base de l'app (API compteur founder). NEXT_PUBLIC_ → dispo client ; fallback prod.
@@ -81,17 +81,59 @@ export default function Pricing({
           🌐 {t.pricing.currencyNote} <span className="font-semibold text-w-900">{currency}</span>
         </p>
 
-        {/* P9-2 : bandeau fondateur global (gold sur gold-50). Masqué si soldOut.
-            Compteur affiché SEULEMENT si chiffre fiable (seatsKnown) — sinon (chargement
-            ou échec fetch) on garde le bandeau avec la garantie, sans chiffre figé/trompeur. */}
+        {/* P9-2 RETOUCHE : BLOC HÉROS sombre (espresso) au-dessus de la grille. Masqué si
+            soldOut. seats>0 → titre AVEC {n} + tuile compteur {n}/100. null/undefined
+            (échec/chargement) → titre générique + tuile MASQUÉE (jamais de 0/flash). */}
         {founderActive && (
-          <div className="max-w-2xl mx-auto mb-10 rounded-2xl border border-gold/40 bg-gold-50 px-5 py-4 text-center">
-            <p className="text-sm font-semibold text-gold-dark">
+          <div
+            className="max-w-2xl mx-auto mb-12 rounded-[18px] px-6 py-9 text-center"
+            style={{ backgroundColor: 'var(--espresso)' }}
+          >
+            {/* pastille Founder offer */}
+            <span
+              className="inline-block px-3 py-1 rounded-full text-[12px] font-semibold uppercase tracking-[0.12em] mb-5"
+              style={{ backgroundColor: 'rgba(184,133,47,0.18)', border: '1px solid var(--gold)', color: '#e0a83e' }}
+            >
+              {t.pricing.launchPriceLabel}
+            </span>
+
+            {/* titre fort (Fraunces, crème). {n} seulement si fiable. */}
+            <h2
+              className="text-[24px] leading-snug mb-6"
+              style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 400, color: '#f7f0dc' }}
+            >
               {seatsKnown
-                ? t.pricing.founderBanner.replace('{n}', String(seats))
-                : t.pricing.launchPriceLabel}
+                ? t.pricing.founderHeroTitle.replace('{n}', String(seats))
+                : t.pricing.founderHeroTitleNoCount}
+            </h2>
+
+            {/* TUILE compteur — affichée UNIQUEMENT si chiffre fiable (jamais de nombre figé). */}
+            {seatsKnown && (
+              <div className="mb-6">
+                <div
+                  className="inline-flex items-baseline gap-2 px-7 py-4 rounded-[12px]"
+                  style={{ backgroundColor: '#1a1611', border: '1px solid #3d3527' }}
+                >
+                  <span
+                    className="tabular-nums"
+                    style={{ fontFamily: "ui-monospace, 'SFMono-Regular', Menlo, monospace", fontSize: '64px', lineHeight: 1, color: '#f4c25a' }}
+                  >
+                    {seats}
+                  </span>
+                  <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: '40px', color: '#6b5f47' }}>
+                    / 100
+                  </span>
+                </div>
+                <p className="mt-2 text-[12px] uppercase tracking-[0.12em]" style={{ color: '#8a7d63' }}>
+                  {t.pricing.seatsLeftLabel}
+                </p>
+              </div>
+            )}
+
+            {/* garantie prix à vie */}
+            <p className="text-[13px] leading-relaxed mx-auto" style={{ color: '#8a7d63', maxWidth: '430px' }}>
+              {t.pricing.lifetimeGuarantee}
             </p>
-            <p className="mt-1 text-xs text-w-700 leading-relaxed">{t.pricing.lifetimeGuarantee}</p>
           </div>
         )}
 
@@ -132,17 +174,53 @@ export default function Pricing({
                 )}
                 <h3 className="text-lg font-bold text-w-900 mb-1">{planT.name}</h3>
                 <p className="text-sm text-w-700 mb-5">{planT.desc}</p>
-                {/* Prix normal BARRÉ (au-dessus) si offre fondateur active + remise existante. */}
-                {showStrike && (
-                  <p className="text-sm text-w-500 mb-0.5">
-                    <span className="line-through tabular-nums">{formatRegularPrice(plan.id, currency)}</span>
-                    <span className="ml-1">{t.pricing.regularPriceLabel}</span>
-                  </p>
+                {/* Hiérarchie prix (P9-2 retouche). isFree → simple. founder + remise →
+                    barré GROS + badge −% + lancement ÉNORME + sous-label gold. soldOut /
+                    payant-sans-remise → prix principal seul (Fraunces). */}
+                {isFree ? (
+                  <div className="mb-5 flex items-baseline gap-1">
+                    <span className="text-3xl font-bold text-w-900 tabular-nums">{t.pricing.freePrice}</span>
+                  </div>
+                ) : showStrike ? (
+                  <div className="mb-5">
+                    {/* prix normal BARRÉ (gros, 2px) + badge remise calculée par tier/devise */}
+                    <div className="flex items-center gap-2 mb-1">
+                      <span
+                        className="tabular-nums"
+                        style={{ fontSize: '16px', textDecorationLine: 'line-through', textDecorationThickness: '2px', color: '#9a8a6a' }}
+                      >
+                        {formatRegularPrice(plan.id, currency)}
+                      </span>
+                      <span
+                        className="rounded-[5px] px-1.5 py-0.5 text-[11px] font-bold"
+                        style={{ backgroundColor: '#f7f0dc', color: '#7a5a1a' }}
+                      >
+                        −{founderDiscountPercent(plan.id, currency)}%
+                      </span>
+                    </div>
+                    {/* prix LANCEMENT énorme (Fraunces, espresso) */}
+                    <div className="flex items-baseline gap-1">
+                      <span
+                        className="tabular-nums"
+                        style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: '44px', lineHeight: 1.05, color: 'var(--espresso)' }}
+                      >
+                        {formatPrice(plan.id, currency)}
+                      </span>
+                      <span className="text-sm text-w-500">{t.pricing.perMonth}</span>
+                    </div>
+                    <p className="mt-1 text-[12px] font-semibold text-gold-dark">{t.pricing.launchPriceLabel}</p>
+                  </div>
+                ) : (
+                  <div className="mb-5 flex items-baseline gap-1">
+                    <span
+                      className="tabular-nums font-bold"
+                      style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: '44px', lineHeight: 1.05, color: 'var(--espresso)' }}
+                    >
+                      {priceLabel}
+                    </span>
+                    <span className="text-sm text-w-500">{t.pricing.perMonth}</span>
+                  </div>
                 )}
-                <div className="mb-5 flex items-baseline gap-1">
-                  <span className="text-3xl font-bold text-w-900 tabular-nums">{priceLabel}</span>
-                  {!isFree && <span className="text-sm text-w-500">{t.pricing.perMonth}</span>}
-                </div>
                 <ul className="space-y-2 mb-6 flex-1">
                   {(planT.features as Feature[]).map((feat, i) => {
                     const excluded = feat.included === false

@@ -151,6 +151,9 @@ export const translations: Record<Locale, Record<string, any>> = {
       regularPriceLabel: 'Regular price',
       launchPriceLabel: 'Founder price',
       lifetimeGuarantee: 'Price locked for life for the first 100 clinics — barring a major cost change (e.g. AI).',
+      founderHeroTitle: 'Only {n} founder seats left',
+      founderHeroTitleNoCount: 'Founder offer — lifetime price',
+      seatsLeftLabel: 'founder seats remaining',
       free: {
         name: 'Discovery',
         desc: 'Try NexusDentaSoft without commitment, no credit card.',
@@ -411,6 +414,9 @@ export const translations: Record<Locale, Record<string, any>> = {
       regularPriceLabel: 'ราคาปกติ',
       launchPriceLabel: 'ราคาผู้ก่อตั้ง',
       lifetimeGuarantee: 'ล็อกราคาตลอดชีพสำหรับ 100 คลินิกแรก — ยกเว้นกรณีต้นทุนเปลี่ยนแปลงครั้งใหญ่ (เช่น AI)',
+      founderHeroTitle: 'เหลือเพียง {n} สิทธิ์ผู้ก่อตั้ง',
+      founderHeroTitleNoCount: 'ข้อเสนอผู้ก่อตั้ง — ราคาตลอดชีพ',
+      seatsLeftLabel: 'สิทธิ์ผู้ก่อตั้งที่เหลือ',
       free: {
         name: 'สำรวจ',
         desc: 'ทดลอง NexusDentaSoft โดยไม่ผูกมัด ไม่ต้องใช้บัตรเครดิต',
@@ -674,6 +680,9 @@ export const translations: Record<Locale, Record<string, any>> = {
       regularPriceLabel: 'Giá thường',
       launchPriceLabel: 'Giá nhà sáng lập',
       lifetimeGuarantee: 'Giá khóa trọn đời cho 100 phòng khám đầu tiên — trừ khi chi phí thay đổi lớn (ví dụ AI).',
+      founderHeroTitle: 'Chỉ còn {n} suất nhà sáng lập',
+      founderHeroTitleNoCount: 'Ưu đãi nhà sáng lập — giá trọn đời',
+      seatsLeftLabel: 'suất nhà sáng lập còn lại',
       free: {
         name: 'Khám phá',
         desc: 'Dùng thử NexusDentaSoft không cam kết, không cần thẻ tín dụng.',

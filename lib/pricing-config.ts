@@ -83,3 +83,13 @@ export function formatRegularPrice(plan: PlanId, currency: Currency): string {
 export function hasFounderDiscount(plan: PlanId, currency: Currency): boolean {
   return PRICES[plan][currency] > 0 && REGULAR_PRICES[plan][currency] > PRICES[plan][currency]
 }
+
+// % de remise fondateur (entier arrondi) DÉRIVÉ de REGULAR_PRICES vs PRICES. VARIE par
+// tier ET devise (ex. starter -35% THB / -40% VND / -30% USD) → JAMAIS de % codé en dur.
+// 0 si pas de remise (free, ou prix normal ≤ lancement).
+export function founderDiscountPercent(plan: PlanId, currency: Currency): number {
+  const reg = REGULAR_PRICES[plan][currency]
+  const launch = PRICES[plan][currency]
+  if (reg <= 0 || launch <= 0 || reg <= launch) return 0
+  return Math.round(((reg - launch) / reg) * 100)
+}
