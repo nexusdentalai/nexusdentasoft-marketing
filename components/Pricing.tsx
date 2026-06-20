@@ -1,7 +1,17 @@
 'use client'
+import { useState, useEffect } from 'react'
 import type { Currency, PlanId } from '@/lib/pricing-config'
-import { formatPrice, PRICES } from '@/lib/pricing-config'
+import { formatPrice, formatRegularPrice, hasFounderDiscount, PRICES } from '@/lib/pricing-config'
 import { buildRegisterUrl } from '@/lib/register-url'
+
+// Base de l'app (API compteur founder). NEXT_PUBLIC_ → dispo client ; fallback prod.
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://app.nexusdentasoft.com'
+
+// État du compteur fondateur :
+//   undefined = en cours de chargement ; null = fetch ÉCHOUÉ ; number = places restantes.
+// soldOut (number === 0) → bascule prix NORMAL (plus de barré/lancement, bandeau masqué).
+// failed (null) → on GARDE barré+lancement, on masque seulement le chiffre du compteur.
+type Seats = number | null | undefined
 
 type T = Record<string, any>
 
@@ -24,6 +34,30 @@ export default function Pricing({
 }) {
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
 
+  // P9-2 : compteur fondateur, lu CÔTÉ CLIENT (valeur dynamique, jamais figée au build).
+  const [seats, setSeats] = useState<Seats>(undefined)
+  useEffect(() => {
+    let cancelled = false
+    const ac = new AbortController()
+    const timer = setTimeout(() => ac.abort(), 4000)   // timeout dur → fail-safe
+    fetch(`${APP_URL}/api/founder/seats`, { signal: ac.signal })
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => {
+        if (cancelled) return
+        const n = (d as { seats_remaining?: unknown } | null)?.seats_remaining
+        setSeats(typeof n === 'number' ? n : null)   // non-number / null → échec (null)
+      })
+      .catch(() => { if (!cancelled) setSeats(null) })   // réseau/timeout → échec (null)
+      .finally(() => clearTimeout(timer))
+    return () => { cancelled = true; ac.abort(); clearTimeout(timer) }
+  }, [])
+
+  // soldOut = compteur résolu à 0 → offre fondateur épuisée : prix NORMAL en principal,
+  // bandeau masqué. founderActive (tout sauf 0, y compris loading/échec) → barré+lancement.
+  const soldOut = seats === 0
+  const founderActive = !soldOut
+  const seatsKnown = typeof seats === 'number' && seats > 0   // chiffre fiable à afficher
+
   return (
     <section className="py-24 px-4">
       <div className="max-w-5xl mx-auto">
@@ -43,9 +77,23 @@ export default function Pricing({
         </div>
 
         {/* note devise détectée */}
-        <p className="text-center text-xs text-w-500 mb-12">
+        <p className="text-center text-xs text-w-500 mb-6">
           🌐 {t.pricing.currencyNote} <span className="font-semibold text-w-900">{currency}</span>
         </p>
+
+        {/* P9-2 : bandeau fondateur global (gold sur gold-50). Masqué si soldOut.
+            Compteur affiché SEULEMENT si chiffre fiable (seatsKnown) — sinon (chargement
+            ou échec fetch) on garde le bandeau avec la garantie, sans chiffre figé/trompeur. */}
+        {founderActive && (
+          <div className="max-w-2xl mx-auto mb-10 rounded-2xl border border-gold/40 bg-gold-50 px-5 py-4 text-center">
+            <p className="text-sm font-semibold text-gold-dark">
+              {seatsKnown
+                ? t.pricing.founderBanner.replace('{n}', String(seats))
+                : t.pricing.launchPriceLabel}
+            </p>
+            <p className="mt-1 text-xs text-w-700 leading-relaxed">{t.pricing.lifetimeGuarantee}</p>
+          </div>
+        )}
 
         {/* grille 3 cartes — Premium au centre, featured */}
         <div className="grid md:grid-cols-3 gap-5 items-stretch">
@@ -53,7 +101,14 @@ export default function Pricing({
             const planT = t.pricing[plan.id]
             const isFeatured = !!plan.featured
             const isFree = PRICES[plan.id][currency] === 0
-            const priceLabel = isFree ? t.pricing.freePrice : formatPrice(plan.id, currency)
+            // soldOut → prix NORMAL en principal (offre fondateur épuisée). Sinon → prix
+            // lancement, avec le prix normal BARRÉ au-dessus si une remise fondateur existe.
+            const priceLabel = isFree
+              ? t.pricing.freePrice
+              : soldOut
+                ? formatRegularPrice(plan.id, currency)
+                : formatPrice(plan.id, currency)
+            const showStrike = !isFree && founderActive && hasFounderDiscount(plan.id, currency)
 
             const cardClass = isFeatured
               ? 'relative bg-surface border-2 border-gold rounded-2xl p-7 flex flex-col plan-card plan-featured'
@@ -77,6 +132,13 @@ export default function Pricing({
                 )}
                 <h3 className="text-lg font-bold text-w-900 mb-1">{planT.name}</h3>
                 <p className="text-sm text-w-700 mb-5">{planT.desc}</p>
+                {/* Prix normal BARRÉ (au-dessus) si offre fondateur active + remise existante. */}
+                {showStrike && (
+                  <p className="text-sm text-w-500 mb-0.5">
+                    <span className="line-through tabular-nums">{formatRegularPrice(plan.id, currency)}</span>
+                    <span className="ml-1">{t.pricing.regularPriceLabel}</span>
+                  </p>
+                )}
                 <div className="mb-5 flex items-baseline gap-1">
                   <span className="text-3xl font-bold text-w-900 tabular-nums">{priceLabel}</span>
                   {!isFree && <span className="text-sm text-w-500">{t.pricing.perMonth}</span>}
