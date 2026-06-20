@@ -1,4 +1,6 @@
 'use client'
+import type { Currency } from '@/lib/pricing-config'
+import { formatValue, DEMO_COMPTA } from '@/lib/pricing-config'
 
 type T = Record<string, any>
 
@@ -150,21 +152,21 @@ function MockStock() {
   )
 }
 
-function MockAccounting() {
+function MockAccounting({ currency, t }: MockProps) {
   return (
     <div className="bg-surface border border-w-100 rounded-2xl p-5 moment-card">
       <div className="flex items-center justify-between mb-4">
-        <div className="text-xs font-semibold text-w-900">Cash-flow · 3 months</div>
+        <div className="text-xs font-semibold text-w-900">{t.features.demoCashflow}</div>
         <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-espresso text-w-0">✦ AI</span>
       </div>
       <div className="grid grid-cols-2 gap-2 mb-3">
         <div className="rounded-lg p-2 bg-w-25">
-          <div className="text-[9px] uppercase tracking-wide text-w-500">Net profit</div>
-          <div className="text-base font-bold tabular-nums text-gold-dark">฿44.7k</div>
+          <div className="text-[9px] uppercase tracking-wide text-w-500">{t.features.demoNetProfit}</div>
+          <div className="text-base font-bold tabular-nums text-gold-dark">{formatValue(DEMO_COMPTA[currency].netProfit, currency)}</div>
         </div>
         <div className="rounded-lg p-2 bg-w-25">
-          <div className="text-[9px] uppercase tracking-wide text-w-500">Forecast +3m</div>
-          <div className="text-base font-bold tabular-nums text-w-900">฿128k</div>
+          <div className="text-[9px] uppercase tracking-wide text-w-500">{t.features.demoForecast3m}</div>
+          <div className="text-base font-bold tabular-nums text-w-900">{formatValue(DEMO_COMPTA[currency].collected, currency)}</div>
         </div>
       </div>
       <svg viewBox="0 0 200 50" preserveAspectRatio="none" className="w-full h-12">
@@ -181,13 +183,17 @@ function MockAccounting() {
   )
 }
 
-const MOCKUPS = [MockBriefing, MockCharting, MockComms, MockAudit, MockStock, MockAccounting]
+// MockProps : seul MockAccounting les consomme ; les autres mocks (fonctions 0-arg)
+// restent assignables à ce type 1-arg (TS) → pas de modif de leur signature.
+type MockProps = { currency: Currency; t: T }
+const MOCKUPS: Array<(p: MockProps) => JSX.Element> = [MockBriefing, MockCharting, MockComms, MockAudit, MockStock, MockAccounting]
 
 export default function Features({
-  t, locale, signupsOpen, registerUrl,
+  t, locale, currency, signupsOpen, registerUrl,
 }: {
   t: T
   locale: string
+  currency: Currency
   signupsOpen: boolean
   registerUrl: string
 }) {
@@ -254,7 +260,7 @@ export default function Features({
 
                 {/* Mockup HTML/CSS */}
                 <div className={reversed ? 'md:order-1' : 'md:order-2'}>
-                  <Mockup />
+                  <Mockup currency={currency} t={t} />
                 </div>
 
               </div>

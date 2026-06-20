@@ -21,6 +21,9 @@ export const translations: Record<Locale, Record<string, any>> = {
       cardCompta: 'Accounting',
       cardDashboard: 'Dashboard',
       aiPill: '✦ AI',
+      comptaCollected: 'Collected revenue',
+      comptaNetProfit: 'Net profit',
+      comptaOverheadNote: 'Overhead {pct}% — within norm. Watch {amount} in receivables.',
     },
     // === Lot HOMEPAGE H2 — sections corps refondues ===
     quote: {
@@ -59,6 +62,9 @@ export const translations: Record<Locale, Record<string, any>> = {
     // === Lot FEATURES (nouveau bloc, ≠ ancien supprimé au H2) — 6 moments du praticien ===
     features: {
       metaTitle: 'Features — NexusDentaSoft',
+      demoCashflow: 'Cash-flow · 3 months',
+      demoNetProfit: 'Net profit',
+      demoForecast3m: 'Forecast +3m',
       metaDescription: 'AI at every moment of your dental day — from morning briefing to evening closing. The AI copilot built for Southeast Asia clinics.',
       eyebrow: 'Features',
       title: 'AI at every moment of your day',
@@ -295,6 +301,9 @@ export const translations: Record<Locale, Record<string, any>> = {
       cardCompta: 'บัญชี',
       cardDashboard: 'แดชบอร์ด',
       aiPill: '✦ AI',
+      comptaCollected: 'รายรับที่เก็บได้',
+      comptaNetProfit: 'กำไรสุทธิ',
+      comptaOverheadNote: 'ค่าใช้จ่ายแฝง {pct}% — อยู่ในเกณฑ์ปกติ ติดตามลูกหนี้ {amount}',
     },
     // === Lot HOMEPAGE H2 — TODO i18n-review (Joel) traductions TH provisoires ===
     quote: {
@@ -333,6 +342,9 @@ export const translations: Record<Locale, Record<string, any>> = {
     // TODO i18n-review (Joel) — traductions TH features provisoires
     features: {
       metaTitle: 'ฟีเจอร์ — NexusDentaSoft',
+      demoCashflow: 'กระแสเงินสด · 3 เดือน',
+      demoNetProfit: 'กำไรสุทธิ',
+      demoForecast3m: 'คาดการณ์ +3 เดือน',
       metaDescription: 'AI ในทุกช่วงเวลาของวันทันตกรรมของคุณ — ตั้งแต่บรีฟตอนเช้าจนถึงปิดร้านตอนเย็น ผู้ช่วย AI สำหรับคลินิกเอเชียตะวันออกเฉียงใต้',
       eyebrow: 'ฟีเจอร์',
       title: 'AI ในทุกช่วงเวลาของวันทำงาน',
@@ -561,6 +573,9 @@ export const translations: Record<Locale, Record<string, any>> = {
       cardCompta: 'Kế toán',
       cardDashboard: 'Bảng điều khiển',
       aiPill: '✦ AI',
+      comptaCollected: 'Doanh thu đã thu',
+      comptaNetProfit: 'Lợi nhuận ròng',
+      comptaOverheadNote: 'Chi phí chung {pct}% — trong mức bình thường. Theo dõi {amount} công nợ phải thu.',
     },
     // === Lot HOMEPAGE H2 — TODO i18n-review (Jessie) traductions VN provisoires ===
     quote: {
@@ -599,6 +614,9 @@ export const translations: Record<Locale, Record<string, any>> = {
     // TODO i18n-review (Jessie) — traductions VN features provisoires
     features: {
       metaTitle: 'Tính năng — NexusDentaSoft',
+      demoCashflow: 'Dòng tiền · 3 tháng',
+      demoNetProfit: 'Lợi nhuận ròng',
+      demoForecast3m: 'Dự báo +3 tháng',
       metaDescription: 'AI trong từng khoảnh khắc của ngày nha khoa — từ bríng sáng đến đóng cửa buổi tối. Trợ lý AI cho phòng khám Đông Nam Á.',
       eyebrow: 'Tính năng',
       title: 'AI trong từng khoảnh khắc của ngày làm việc',

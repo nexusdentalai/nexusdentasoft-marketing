@@ -1,5 +1,6 @@
 'use client'
 import type { Currency } from '@/lib/pricing-config'
+import { formatValue, DEMO_COMPTA } from '@/lib/pricing-config'
 import { buildRegisterUrl } from '@/lib/register-url'
 
 type T = Record<string, any>
@@ -119,17 +120,19 @@ export default function HeroRedesign({
             </div>
             <div className="grid grid-cols-2 gap-2 mb-3">
               <div className="rounded-lg p-2.5 bg-w-25">
-                <p className="text-[9px] uppercase tracking-wide text-w-500">Collected revenue</p>
-                <p className="text-base font-bold tabular-nums text-w-900">฿120,000</p>
+                <p className="text-[9px] uppercase tracking-wide text-w-500">{t.hero.comptaCollected}</p>
+                <p className="text-base font-bold tabular-nums text-w-900">{formatValue(DEMO_COMPTA[currency].collected, currency)}</p>
               </div>
               <div className="rounded-lg p-2.5 bg-w-25">
-                <p className="text-[9px] uppercase tracking-wide text-w-500">Net profit</p>
-                <p className="text-base font-bold tabular-nums text-gold-dark">฿44,700</p>
+                <p className="text-[9px] uppercase tracking-wide text-w-500">{t.hero.comptaNetProfit}</p>
+                <p className="text-base font-bold tabular-nums text-gold-dark">{formatValue(DEMO_COMPTA[currency].netProfit, currency)}</p>
               </div>
             </div>
             <div className="rounded-lg p-2.5 bg-espresso text-w-0 text-[10px] leading-relaxed">
               <span className="text-gold mr-1">✦</span>
-              Overhead 62.8 % — within norm. Watch ฿30,000 in receivables.
+              {t.hero.comptaOverheadNote
+                .replace('{pct}', String(DEMO_COMPTA[currency].overheadPct))
+                .replace('{amount}', formatValue(DEMO_COMPTA[currency].receivables, currency))}
             </div>
           </div>
 

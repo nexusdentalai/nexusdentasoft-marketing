@@ -62,10 +62,21 @@ export const CURRENCY_FORMAT: Record<Currency, { symbol: string; position: 'befo
   USD: { symbol: '$', position: 'before', locale: 'en-US'  },
 }
 
-function formatValue(value: number, currency: Currency): string {
+// Formate un MONTANT BRUT selon la devise (฿/$ avant, ₫ après ; séparateurs locaux).
+// Exporté : réutilisé par les cartes démo (HeroRedesign/Features) — montants par devise.
+export function formatValue(value: number, currency: Currency): string {
   const fmt = CURRENCY_FORMAT[currency]
   const number = value.toLocaleString(fmt.locale)
   return fmt.position === 'before' ? `${fmt.symbol}${number}` : `${number}${fmt.symbol}`
+}
+
+// B-MARKETING-DEMO-DEVISE : dataset démo « accounting » PAR DEVISE (valeurs BRUTES,
+// illustratives — chiffres ronds crédibles, PAS une conversion exacte). Keyé par
+// Currency (pas locale) car 'en' a une devise dynamique (géo-IP). Formaté via formatValue.
+export const DEMO_COMPTA: Record<Currency, { collected: number; netProfit: number; receivables: number; overheadPct: number }> = {
+  THB: { collected: 120000,   netProfit: 44700,    receivables: 30000,    overheadPct: 62.8 },
+  VND: { collected: 90000000, netProfit: 33500000, receivables: 22000000, overheadPct: 62.8 },
+  USD: { collected: 3500,     netProfit: 1300,     receivables: 850,      overheadPct: 62.8 },
 }
 
 // Prix LANCEMENT (founder) formaté — inchangé (PRICES).

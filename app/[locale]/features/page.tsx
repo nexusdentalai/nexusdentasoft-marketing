@@ -1,4 +1,6 @@
+import { headers } from 'next/headers'
 import { getT } from '@/lib/i18n'
+import { resolveCurrencyForLocale } from '@/lib/pricing-config'
 import { buildRegisterUrl } from '@/lib/register-url'
 import Features from '@/components/Features'
 import Navbar from '@/components/Navbar'
@@ -26,12 +28,15 @@ export default function FeaturesPage({ params }: { params: { locale: string } })
   const t = getT(params.locale)
   const signupsOpen = process.env.NEXT_PUBLIC_SIGNUPS_OPEN === 'true'
   const registerUrl = buildRegisterUrl(params.locale, { plan: 'free', source: 'features' })
+  // B-MARKETING-DEMO-DEVISE : devise par locale (vn→VND, th→THB, en→géo-IP) pour la
+  // carte démo Cash-flow (même logique que home/pricing, Règle 11).
+  const currency = resolveCurrencyForLocale(params.locale, headers())
 
   return (
     <>
       <Navbar t={t} locale={params.locale} />
       <main className="bg-w-25 min-h-screen pt-20">
-        <Features t={t} locale={params.locale} signupsOpen={signupsOpen} registerUrl={registerUrl} />
+        <Features t={t} locale={params.locale} currency={currency} signupsOpen={signupsOpen} registerUrl={registerUrl} />
       </main>
       <Footer t={t} locale={params.locale} />
     </>
